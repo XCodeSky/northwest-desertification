@@ -5,7 +5,7 @@
 ## 服务器 IP 访问
 
 ```bash
-tar -xzf northwest-desertification-site-1.1.0.tar.gz
+tar -xzf northwest-desertification-site-1.0.0.tar.gz
 cd website
 sudo bash deploy/ubuntu24/deploy.sh
 ```
@@ -47,4 +47,3 @@ sudo env TIANDITU_TK='你的浏览器端密钥' \
 ```
 
 重复运行会生成新发布目录并原子切换。旧版本保留在 `<site-base>/releases/`。部署脚本不会修改防火墙或云安全组；请开放 TCP 80，启用 HTTPS 时同时开放 443。
-

@@ -2,7 +2,7 @@
 
 用浏览器直接打开 `index.html`（首页）或 `region.html`（地区预测）即可，不需要服务器。推荐使用 Chrome 或 Edge。只有地图底图（天地图）需要联网和密钥，见下文“地图底图”；离线时地图改用简化示意底图，其余功能不受影响。
 
-当前仓库版本为 `1.1.0`。发布前运行 `python tools/validate_site.py --root .` 检查页面资源、年度数据完整性和 JavaScript 语法。Ubuntu 24.04 部署见 [`DEPLOYMENT.md`](DEPLOYMENT.md)，发布包可在 Windows PowerShell 中运行 `tools/package_release.ps1` 生成。
+当前网站发布版本为 `1.0.0`（模型版本为 `NW-DESERT-1K v1.1`）。发布前运行 `python tools/validate_site.py --root .` 检查页面资源、年度数据完整性和 JavaScript 语法。Ubuntu 24.04 部署见 [`DEPLOYMENT.md`](DEPLOYMENT.md)，发布包可在 Windows PowerShell 中运行 `tools/package_release.ps1` 生成。
 
 ## 目录
 
