@@ -1,7 +1,10 @@
 # 西北荒漠化灾害预测及防护平台
 
-用浏览器直接打开 `index.html`（首页）或 `region.html`（地区预测）即可，不需要服务器。推荐使用 Chrome 或 Edge。只有地图底图（天地图）需要联网和密钥，见下文“地图底图”；离线时地图改用简化示意底图，其余功能不受影响。
+离线运行：
+用浏览器直接打开 `index.html`即可，不需要服务器，推荐使用 Chrome 或 Edge。
+只有地图底图（天地图）需要联网和密钥，见下文“地图底图”；离线时地图改用简化示意底图，其余功能不受影响。
 
+在线部署：
 当前网站发布版本为 `1.0.0`（模型版本为 `NW-DESERT-1K v1.1`）。发布前运行 `python tools/validate_site.py --root .` 检查页面资源、年度数据完整性和 JavaScript 语法。Ubuntu 24.04 部署见 [`DEPLOYMENT.md`](DEPLOYMENT.md)，发布包可在 Windows PowerShell 中运行 `tools/package_release.ps1` 生成。
 
 ## 目录
@@ -140,14 +143,6 @@ python tools/build_validation.py ..\..\desertification_model_v1\outputs\model_co
 
 并把该目录下的 `逐类别验证指标_1km_2020-2025.xlsx`、`1km模型对比_2020-2025时序验证.xlsx` 复制到 `assets/downloads/`，分别改名为 `per_class_metrics_1km_2020-2025.xlsx`、`model_comparison_1km_2020-2025.xlsx`。模型说明页 05 节中“逐像元分类”“最终制图链路”两组数字为静态文本，需要同步修改。
 
-## 按需加载
-
-- **首页**：打开时只加载精简的 `core.js`、`scen.js`、`calib.js`。切换年份或情景时加载该年的 `year/k_*.js`（县区 KPI，用于热点县区和悬停提示），并顺带预取下一年；点开某个县区的卡片时才加载该省的 `prov/p_*.js`。
-- **地区预测**：地区页的构成演变、情景曲线、气象与归因都需要所选地区 2000–2050 年的完整序列，因此按“省”加载：选择某地区时加载其所在省的 `prov/p_*.js` 与 `prov/r_*.js`（陕西约 1.6 MB，新疆约 2.2 MB），切换到同省其他地区不再加载。悬停到外省县区时只加载当年的 `year/k_*.js`。
-- 1 km 栅格（`assets/tiles/`）原本就按年份按需加载，未改动。
-- 分块文件名带页面脚本的版本号（`mapcore.js?v=…`），更新数据后改动 HTML 中 mapcore.js 的版本号即可让浏览器重新读取。
-
-下载包 `assets/downloads/desertification_1km_2000_2050_anchors.zip` 需要另行更新。把 11 个锚点年份的 `desertification_YYYY_1km.tif` 连同其中的 README.txt 重新打包即可。
 
 ## 地图底图
 
@@ -158,24 +153,7 @@ python tools/build_validation.py ..\..\desertification_model_v1\outputs\model_co
 - 地图“导出 PNG”仍以简化示意底图为背景，不含天地图瓦片（浏览器跨域限制）。
 - 县区统计边界仍为 DataV GeoAtlas。首页“研究区位置”图左下角的南海诸岛示意取自 DataV 全国边界 `100000_full.json`（2022 年版，经 GitHub 项目 lyhmyd1211/GeoMapData_CN 获取）。更新时执行 `python tools/build_scs.py path/to/china.json`。
 
-## 数据来源页
-
-`data.html` 的内容整理自 `desertification_model_v1/outputs/website_data_sources/`（`网站数据来源说明.md`、`data_sources.json`），两份原文件也放在 `assets/downloads/` 供下载。来源编号与地区页一致：防护措施来源统一显示为 D01–D19（即措施表中的 S01–S19）。
 
 ## 许可协议
 
 本项目的模型结果、图件与网站内容采用 [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hans)（署名-非商业性使用-相同方式共享 4.0 国际）协议许可。第三方数据与底图（ESA CCI、NASA、geoBoundaries、DataV、天地图等）仍遵循其各自的原始许可。
-
-## 历史记录页
-
-历史记录下分两篇：`history.html`（沙海长路）与 `heroes.html`（漠上群英），两页共用 `history.css` 与 `history.js`。漠上群英的照片取自维基共享资源，出处与授权见数据来源页第 10 节。
-
-`history.html` 为长文版式，不加载地图数据。六章按时间排列：绿洲的兴废、枯竭、山水与沙、沙尘的记忆、新的办法（含八步沙、青土湖、塔克拉玛干锁边与“人工治沙的几种做法”）、结语。示意图直接写在 HTML 里，均标注“本平台绘制，不按比例”；第 05 章位置示意图的省界取自 `assets/data/geo.js`。影像出处、授权与史料来源统一放在数据来源页第 10 节；署名、许可与免责声明始终为最后一节（第 11 节）。
-
-## 模型说明页
-
-`model.html` 的内容整理自 `desertification_model_v1/outputs/website_model_description/`（`模型说明.md`、`model_config.json`），两份原文件放在 `assets/downloads/`（`website_model_description.md`、`model_config.json`），页面右上角可下载。页面中的数字为静态文本；模型更新后，需要按新的说明文档手动更新该页。
-
-## 关于项目页
-
-`about.html` 按 AI4Climate Global Youth Climate Solutions Challenge 的要求组织：四项基本要求（真实问题、明确用户、AI 必要、90 天可测试）、五项提交材料与六项评审标准的对照，以及大赛对高风险应用要求说明的数据来源、不确定性、可能误差与使用边界。第 06 节“90 天验证计划”为计划，尚未实施；试点地区与判定标准可按实际情况修改。
