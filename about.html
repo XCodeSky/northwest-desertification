@@ -1,0 +1,428 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>关于项目 · 西北荒漠化灾害预测及防护平台</title>
+<meta name="description" content="中国西北地区荒漠化灾害预测及防护平台：参加 AI4Climate Global Youth Climate Solutions Challenge 赛道 06 的项目介绍——问题、用户、AI 任务、方案逻辑、90 天验证计划与安全使用说明。">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<style>html{background:#E6E8E4}</style>
+<script>(function(){var h=document.documentElement;h.classList.add('pre');try{if(sessionStorage.getItem('nw-nav'))h.classList.add('internal')}catch(e){}setTimeout(function(){h.classList.remove('pre')},3000)})();</script>
+<link rel="stylesheet" href="assets/css/site.css?v=20261010c">
+<link rel="stylesheet" href="assets/css/data.css?v=20261010c">
+<link rel="stylesheet" href="assets/css/model.css?v=20261010c">
+<link rel="stylesheet" href="assets/css/about.css?v=20261010f">
+</head>
+<body>
+
+<nav class="side" aria-label="主导航">
+  <div class="brand">
+    <div class="mark" aria-hidden="true">
+      <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="#1A3441" stroke-width="2.4" stroke-linecap="square"><path d="M2 9c4-3 7-3 11 0s7 3 13 0"/><path d="M2 15c4-3 7-3 11 0s7 3 13 0"/><path d="M2 21c4-3 7-3 11 0s7 3 13 0"/></svg>
+    </div>
+    <div><b>西北荒漠化</b><small>灾害预测及防护平台</small></div>
+  </div>
+  <ul class="nav-list">
+    <li><a href="index.html"><svg viewBox="0 0 24 24"><path d="M3 11l9-7 9 7v9H3z"/><path d="M9 20v-6h6v6"/></svg>首页</a></li>
+    <li><a href="region.html"><svg viewBox="0 0 24 24"><path d="M3 6l6-2 6 2 6-2v14l-6 2-6-2-6 2z"/><path d="M9 4v14M15 6v14"/></svg>地区预测</a>
+      <ul class="nav-sub"><li><a href="region.html#s=measures" data-sub="measures"><svg viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 4.5-3.4 8-8 9-4.6-1-8-4.5-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg>防护措施</a></li></ul></li>
+    <li><a href="data.html"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="5.5" rx="8" ry="2.5"/><path d="M4 5.5v13c0 1.4 3.6 2.5 8 2.5s8-1.1 8-2.5v-13"/><path d="M4 12c0 1.4 3.6 2.5 8 2.5s8-1.1 8-2.5"/></svg>数据来源</a>
+      <ul class="nav-sub">
+        <li><a href="data.html#s1" data-sub="ds-s1"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="7" height="7"/><rect x="13" y="4" width="7" height="7"/><rect x="4" y="13" width="7" height="7"/><rect x="13" y="13" width="7" height="7"/></svg>概览</a></li>
+        <li><a href="data.html#s5" data-sub="ds-s5"><svg viewBox="0 0 24 24"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9z"/><path d="M4 7.5l8 4.5 8-4.5M12 12v9"/></svg>模型</a></li>
+        <li><a href="data.html#s11" data-sub="ds-s11"><svg viewBox="0 0 24 24"><path d="M14 4l6 6-10 10H4v-6z"/><path d="M12 6l6 6"/></svg>署名和免责</a></li>
+      </ul></li>
+  </ul>
+  <div class="nav-sep"></div>
+  <ul class="nav-list">
+    <li><a href="history.html"><svg viewBox="0 0 24 24"><path d="M4 4.5A2.5 2.5 0 0 1 6.5 2H20v18H6.5A2.5 2.5 0 0 0 4 22z"/><path d="M4 17.5h16"/><path d="M8 6h8M8 9.5h5"/></svg>历史记录</a>
+      <ul class="nav-sub">
+        <li><a href="history.html" data-sub="hs-road"><svg viewBox="0 0 24 24"><path d="M8 21L10.5 3M16 21L13.5 3"/><path d="M12 6v2.5M12 11v2.5M12 16v2.5"/></svg>沙海长路</a></li>
+        <li><a href="heroes.html" data-sub="hs-people"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.4"/><path d="M4.5 20.5c0-3.6 3.3-6 7.5-6s7.5 2.4 7.5 6"/></svg>漠上群英</a></li>
+      </ul></li>
+    <li><a href="model.html"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><path d="M17.5 14v7M14 17.5h7"/></svg>模型说明</a></li>
+    <li><a href="about.html" class="on" aria-current="page"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.3"/></svg>关于项目</a></li>
+  </ul>
+  <div class="nav-foot">
+    <div class="status">
+      <div><span class="dot"></span>完整版 1 km 模型</div>
+      <div>年份 <b>2000–2050</b>（逐年）</div>
+      <div>网格 <b>0.01°</b>（名义约 1 km）</div>
+    </div>
+    <a class="btn-dl" href="assets/downloads/desertification_1km_2000_2050_anchors.zip" download>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12M7 10l5 5 5-5M4 20h16"/></svg>
+      下载锚点年份栅格
+    </a>
+  </div>
+</nav>
+<main class="ds md ab">
+  <header class="top ds-head" data-anim>
+    <div class="ttl">
+      <div class="crumb"><a href="index.html">西北五省区</a><i>/</i><b>关于项目</b></div>
+      <h1>关于项目<small class="num">AI4Climate · 赛道 06</small></h1>
+    </div>
+    <div class="top-tools">
+      <a class="btn-o" href="https://ai4climate.world" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9M18 14v6H4V6h6"/></svg>大赛官网</a>
+      <a class="btn-d" href="index.html"><svg viewBox="0 0 24 24"><path d="M3 6l6-2 6 2 6-2v14l-6 2-6-2-6 2z"/><path d="M9 4v14M15 6v14"/></svg>打开平台首页</a>
+    </div>
+  </header>
+
+  <div class="ds-body">
+  <div class="ds-col">
+
+  <!-- 摘要 -->
+  <section class="panel reg ds-sum" data-anim>
+    <p class="lead">西北五省区的荒漠化土地约 150 万 km²，接近全国的六成。治沙的人力和资金有限，难处不在要不要治，而在<b>先治哪里、怎么治、治了是否有效</b>。本平台用 1 km 机器学习模型预测 2026—2050 年每一年、每一格的荒漠化风险，比较三种气候情景，并把结果落到省、市、县三级的优先排序和措施建议上。</p>
+    <div class="stats">
+      <div><b class="num">150<small>万km²</small></b><span>五省区 2019 年<br>公开荒漠化面积</span></div>
+      <div><b class="num">314<small>万</small></b><span>逐年预测的<br>1 km 格网</span></div>
+      <div><b class="num">367</b><span>可查询的<br>县级单元</span></div>
+      <div><b class="num">3</b><span>CMIP6<br>气候情景</span></div>
+      <div><b class="num">0.846<small>/ 0.816</small></b><span>独立时序验证 Kappa<br>逐像元 / 最终制图</span></div>
+    </div>
+  </section>
+
+  <!-- 1 参赛信息 -->
+  <section class="panel reg sec" id="a1" data-anim>
+    <div class="sh"><span class="no num">01</span><div><h2>参赛信息、团队与四项基本要求</h2><p>本项目参加 AI4Climate Global Youth Climate Solutions Challenge 推荐赛道 06：中国西北荒漠化防治与气候韧性。</p></div></div>
+    <div class="cards c12">
+      <article class="src">
+        <header class="lB"><i class="num">ID</i><b>项目档案</b><span class="in">2026-10</span></header>
+        <dl>
+          <dt>项目名称</dt><dd>中国西北地区荒漠化灾害预测及防护平台</dd>
+          <dt>赛道</dt><dd>06 · Desertification Control and Climate Resilience, Northwest China</dd>
+          <dt>赛道关注</dt><dd class="q">干旱、风蚀与植被退化下的治理选址、长期监测与成效评估</dd>
+          <dt>成果形式</dt><dd>可离线运行的网站 + 1 km 预测模型 + 数据处理脚本</dd>
+          <dt>模型版本</dt><dd class="num">NW-DESERT-1K v1.1（2026-10-09）</dd>
+          <dt>许可</dt><dd>CC BY-NC-SA 4.0</dd>
+        </dl>
+      </article>
+      <div class="must">
+        <a href="#a2"><i class="num">1</i><b>真实问题</b><span>五省区约 150 万 km² 荒漠化土地，2025 年约 77% 为重度及以上（模型校准估算）。</span><em>见 02</em></a>
+        <a href="#a3"><i class="num">2</i><b>明确用户</b><span>县级林草与生态修复部门、治沙站与林场、项目评估与科研教学人员。</span><em>见 03</em></a>
+        <a href="#a4"><i class="num">3</i><b>AI 不可替代</b><span>预测 314 万个格网五年后各等级的概率，规则或人工无法逐格完成。</span><em>见 04</em></a>
+        <a href="#a6"><i class="num">4</i><b>90 天可测试</b><span>遥感回检、现场与影像两级样点、用户试用三项检验，在一个县内即可完成。</span><em>见 06</em></a>
+      </div>
+    </div>
+    <div class="team" id="team">
+      <h3 class="hsub">团队基本信息<small>方括号内为待填写的占位内容</small></h3>
+      <div class="team-g">
+        <dl class="tinfo">
+          <dt>团队名称</dt><dd>技术宅拯救不了世界</dd>
+          <dt>学校或机构</dt><dd>宁波大学, 厦门大学</dd>
+          <dt>署名方式</dt><dd>以团队名称署名，成员：Ratatoskr, XFeastrA</dd>
+          <dt>项目联系邮箱</dt><dd>2216729028@qq.com</dd>
+          <dt>在线演示</dt><dd><span class="ph">[在线演示链接]</span><small>离线版：<a class="lk" href="assets/video/demo.mp4" target="_blank" rel="noopener">打开本地演示视频（demo.mp4）</a></small></dd>
+          <dt>代码仓库</dt><dd><span class="ph">[代码仓库链接]</span><small>含 <code>tools/</code> 数据处理脚本与模型工程</small></dd>
+        </dl>
+        <div class="roles">
+          <table class="tbl">
+            <thead><tr><th>成员</th><th>分工</th><th>负责部分</th></tr></thead>
+            <tbody>
+              <tr><td><span class="nm">XFeastrA</span><small class="lead-tag">负责人</small></td><td>数据获取与处理：遥感与气候数据下载、代理标签、官方面积校准</td><td><span class="own d">数据</span></td></tr>
+              <tr><td><span class="nm">XFeastrA</span></td><td>模型构建与验证：LightGBM、CA-Markov、三情景推演、不确定性</td><td><span class="own m">模型</span></td></tr>
+              <tr><td><span class="nm">Ratatoskr, XFeastrA</span></td><td>网站设计与开发：地图引擎、交互、页面与发布</td><td><span class="own w">网站</span></td></tr>
+              <tr><td><span class="nm">Ratatoskr</span></td><td>内容与传播：历史记录撰写、资料核查、演示视频</td><td><span class="own c">内容</span></td></tr>
+            </tbody>
+          </table>
+          <div class="owners">
+            <div><i class="own d">数据</i><span>由 XFeastrA 负责</span><a class="lk" href="data.html">数据来源</a></div>
+            <div><i class="own m">模型</i><span>由 XFeastrA 负责</span><a class="lk" href="model.html">模型说明</a></div>
+            <div><i class="own w">网站</i><span>由 Ratatoskr 负责</span><a class="lk" href="index.html">平台首页</a></div>
+          </div>
+        </div>
+      </div>
+      <p class="note">成员人数与分工可按实际增减。公开展示时可只保留团队名称与学校，个人姓名和联系方式按需填写。</p>
+    </div>
+  </section>
+
+  <!-- 2 问题 -->
+  <section class="panel reg sec" id="a2" data-anim>
+    <div class="sh"><span class="no num">02</span><div><h2>真实的问题</h2><p>荒漠化在好转，但慢；气候变暖和降水波动，又让好转的方向不那么确定。</p></div></div>
+    <div class="prin p3">
+      <div><span>规模 · 官方公开数据</span><b>150.43 万km²</b><p>2019 年五省区公开荒漠化面积合计；全国荒漠化土地 257.37 万 km²。各省口径略有差异。</p></div>
+      <div><span>程度 · 模型校准估算</span><b>约 77%</b><p>2025 年五省区荒漠化土地中，重度及以上约 117 万 km²。</p></div>
+      <div><span>趋势 · 模型校准估算</span><b>162.9 → 152.1 万km²</b><p>2000—2025 年缓慢减少；SSP2-4.5 下 2050 年约 144.8 万 km²，但综合风险中的气候分量上升。</p></div>
+    </div>
+    <p class="txt">难处在于地方上的取舍：一个县有几十个乡镇、上千平方公里沙地，治沙工程每年只能覆盖其中一部分。哪里正在变坏、哪里已经稳定、哪里在气候变化下最脆弱，靠逐年实地踏勘很难看全，而全国调查约五年一次，公开数据多到省级。历史上的治沙经验见 <a class="lk" href="history.html">沙海长路</a> 与 <a class="lk" href="heroes.html">漠上群英</a>，面积口径与出处见 <a class="lk" href="data.html#s3">数据来源 · 官方调查</a>。</p>
+  </section>
+
+  <!-- 3 用户 -->
+  <section class="panel reg sec" id="a3" data-anim>
+    <div class="sh"><span class="no num">03</span><div><h2>服务对象</h2><p>三类直接用户，各自对应赛道关注的一件事。</p></div></div>
+    <div class="users">
+      <article><header><i class="num">U1</i><b>县级林草与生态修复部门</b><span>治理选址</span></header>
+        <p>需要在有限预算下排出治理先后。平台给出县区风险排名、2030 年起的优先等级（一级至四级）和措施类型；2030 年措施表中有 43 个单元为一级（紧急）。</p>
+        <a href="region.html#a=620621&amp;y=2030&amp;s=measures">地区预测 · 防护措施 ›</a></article>
+      <article><header><i class="num">U2</i><b>治沙站、林场与基层监测人员</b><span>长期监测</span></header>
+        <p>需要知道哪些地块在变坏、哪些已经稳定。平台提供 2000—2050 逐年 1 km 等级、年际变化图层、置信度和 90% 区间。</p>
+        <a href="index.html#y=2030">首页 · 逐年等级图 ›</a></article>
+      <article><header><i class="num">U3</i><b>项目评估、科研与教学人员</b><span>成效评估</span></header>
+        <p>需要比较治理前后与不同气候情景。平台提供双时相叠加对比、三情景切换与差异图层，以及可下载的锚点栅格。</p>
+        <a href="region.html#a=620600&amp;y=2040&amp;c=2025-2040">地区预测 · 叠加对比 ›</a></article>
+    </div>
+    <p class="note">公众与学生是间接用户：历史记录板块以故事和档案影像讲述西北治沙，用于科普。</p>
+  </section>
+
+  <!-- 4 AI 任务 -->
+  <section class="panel reg sec" id="a4" data-anim>
+    <div class="sh"><span class="no num">04</span><div><h2>AI 的任务</h2><p>只有一项，但不可替代。</p></div></div>
+    <div class="task">
+      <p class="big">根据每个 1 km 格网的当前等级、NDVI 及其趋势、土地覆盖、位置和周边 15×15 格网的等级构成，<b>预测它五年后进入五个荒漠化等级的概率</b>。</p>
+      <div class="why3">
+        <div><b>为什么需要 AI</b><p>三个情景合计约 3.2 亿个“格网 · 年”，每个格网的变化取决于多种因素的非线性组合。阈值规则只能描述现状，Markov 矩阵只能给出“转多少”，回答不了“转哪里”。</p></div>
+        <div><b>用什么</b><p>LightGBM 五分类，1570 万条历史转移样本训练；CA-Markov 负责空间分配，三种 CMIP6 情景的降水与气温调整转移方向。</p></div>
+        <div><b>效果如何</b><p>留出完整的 2020→2025 期检验：逐像元分类总体精度 88.60%、Kappa 0.8464；地图采用的 CA-Markov 最终链路为 86.40%、0.8164，略低于“等级保持不变”基线（87.29%、0.8284）。指标针对遥感代理标签，混淆矩阵与逐类别指标见<a class="lk" href="model.html#m5v">模型说明 · 05</a>。</p></div>
+      </div>
+      <a class="btn-o" href="model.html"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><path d="M17.5 14v7M14 17.5h7"/></svg>完整的模型说明</a>
+    </div>
+  </section>
+
+  <!-- 5 方案逻辑 -->
+  <section class="panel reg sec" id="a5" data-anim>
+    <div class="sh"><span class="no num">05</span><div><h2>方案逻辑与使用流程</h2><p>从数据到决定，用户在平台上走三步。</p></div></div>
+    <ol class="loop">
+      <li><span class="st num">1</span><b>哪里风险高</b><p>1 km 等级图、县区排名、三情景切换与差异图层。</p><em>治理选址</em><a href="index.html">首页 ›</a></li>
+      <li><span class="st num">2</span><b>为什么会这样</b><p>降水、气温与驱动因子贡献（代理归因），逐年构成演变与置信度。</p><em>长期监测</em><a href="region.html#a=620621&amp;y=2040">地区概况 ›</a></li>
+      <li><span class="st num">3</span><b>做什么、做得怎样</b><p>2030 年起的优先等级与措施建议；2000—2025 年实际治理案例；双时相对比看变化。</p><em>成效评估</em><a href="region.html#a=620621&amp;y=2030&amp;s=measures">防护措施 ›</a></li>
+    </ol>
+    <p class="note">数据链路：ESA CCI 土地覆盖、MODIS NDVI、NEX-GDDP-CMIP6 → 五级代理标签 → LightGBM + CA-Markov → 1 km 逐年等级、置信度、区间 → 按 2019 年官方面积校准 → 县、市、省汇总与措施匹配。详见 <a class="lk" href="data.html#s1">数据来源 · 数据链路</a>。</p>
+  </section>
+
+  <!-- 6 验证计划 -->
+  <section class="panel reg sec" id="a6" data-anim>
+    <div class="sh"><span class="no num">06</span><div><h2>90 天验证计划</h2><p>选一个县，用三种方法检验“预测准不准”和“用户用不用得上”。以下为计划，尚未实施。</p></div></div>
+    <div class="plan">
+      <div class="plan-h">
+        <div><span>试点地区</span><b>甘肃省武威市民勤县</b><p>石羊河下游、腾格里与巴丹吉林沙漠之间；2040 年预测风险指数 0.74，省内第 7；平台已收录本地治理案例。</p><a class="lk" href="region.html#a=620621&amp;y=2030&amp;s=measures">民勤县防护措施 ›</a></div>
+        <div><span>负责人与预算</span><b>总负责 甲　·　约 9,200 元</b><p>外业 2 人、4 天；3—5 名林草、地理或遥感人员协助。各项负责人、分项预算见下方。</p></div>
+      </div>
+
+      <h3 class="hsub">检验方法与负责人</h3>
+      <table class="tbl wrap">
+        <thead><tr><th>方法</th><th>做法</th><th>负责人</th></tr></thead>
+        <tbody>
+          <tr><td><b>A 遥感回检</b></td><td>用 2026 年 7 月 MODIS NDVI 按同一规则生成 2026 年代理等级，与模型 2026 年预测在全县 18,080 个 1 km 格网上逐格比较。</td><td>甲</td></tr>
+          <tr><td><b>B 两级样点</b></td><td>一级为现场调查，30—40 个沿道路可达的分层样点；二级为高分辨率影像复核，覆盖全部现场样点和约 50 个道路不可达的格网。两级都不看模型预测，盲判后再对照。</td><td>现场：乙<br>影像：甲</td></tr>
+          <tr><td><b>C 用户试用</b></td><td>请下方参与人员完成三项任务：找出本市优先治理县区并说明主因；查看 2030 年措施建议；导出地图。记录用时并做简短问卷。</td><td>乙</td></tr>
+        </tbody>
+      </table>
+
+      <h3 class="hsub">分层样点<small>按 2026 年预测等级分层，沿道路可达</small></h3>
+      <div class="plan-g">
+        <table class="tbl strata">
+          <thead><tr><th>预测等级</th><th>全县格网</th><th>正式样点</th><th>备用</th></tr></thead>
+          <tbody>
+            <tr><td><i class="sw" style="background:#D3DEC8"></i>稳定</td><td class="num">1,282（7%）</td><td class="num">6</td><td class="num">1</td></tr>
+            <tr><td><i class="sw" style="background:#F0DC9C"></i>轻度</td><td class="num">799（4%）</td><td class="num">6</td><td class="num">1</td></tr>
+            <tr><td><i class="sw" style="background:#E2AE52"></i>中度</td><td class="num">819（5%）</td><td class="num">6</td><td class="num">1</td></tr>
+            <tr><td><i class="sw" style="background:#C4702F"></i>重度</td><td class="num">6,596（36%）</td><td class="num">8</td><td class="num">1</td></tr>
+            <tr><td><i class="sw" style="background:#7E3420"></i>极重度</td><td class="num">8,584（47%）</td><td class="num">8</td><td class="num">1</td></tr>
+            <tr class="sum"><td>合计</td><td class="num">18,080</td><td class="num">34</td><td class="num">5</td></tr>
+          </tbody>
+        </table>
+        <ul class="pts">
+          <li><b>可达</b>格网中心距县道、乡道或可通车的沙石路不超过 1 km，在天地图道路图层上筛选。</li>
+          <li><b>均匀</b>3 × 3 邻域内同一等级的格网不少于 6 个，避免落在等级交界处；各层尽量分布在坝区、泉山区和湖区。</li>
+          <li><b>分配</b>面积小的三层各取 6 个，保证能单独估计；面积大的两层各取 8 个。正式样点无法到达时，用同层备用点替换。</li>
+          <li><b>排除</b>保护区核心区、军事管理区和私人院落；进入林场或保护区实验区前，先征得管理单位同意。</li>
+        </ul>
+      </div>
+
+      <h3 class="hsub">外业分两级</h3>
+      <div class="lvl2">
+        <article><header><i class="num">一级</i><b>现场调查</b><span>30—40 个样点 · 4 天，每天 8—10 个</span></header>
+          <ol>
+            <li>在格网内距道路 200 m 以外的代表性位置，沿垂直道路方向布设 3 个 10 m × 10 m 样方，间隔 50 m。</li>
+            <li>记录植被总盖度、灌木盖度（两人分别目估，取平均）、流沙或裸沙占比，风蚀坑、沙丘、积沙、沙压农田等迹象，以及土地利用类型。</li>
+            <li>每个样方拍东、南、西、北和垂直向下各 1 张照片，手机记录坐标与定位精度。</li>
+            <li>按判级表给出现场等级。判级表以植被盖度和流沙占比为主，第 1—2 周与治沙科研人员共同确定。</li>
+          </ol></article>
+        <article><header><i class="num">二级</i><b>高分辨率影像复核</b><span>约 80—90 个格网 · 第 3—8 周</span></header>
+          <ol>
+            <li>对象：全部现场样点，加上每层随机抽取的 10 个道路不可达格网。</li>
+            <li>影像：2025—2026 年生长季的亚米级至 2 m 影像，以天地图影像为主；如能经学校获取高分一号、高分二号数据则优先使用。</li>
+            <li>两名判读员互不知情，在整个 1 km 格网内估计植被覆盖和流沙、沙丘面积比例，按同一判级表定级；不一致时由第三人裁定。</li>
+            <li>先在现场样点上检查影像与现场是否一致；一致率达到最低通过值后，不可达格网的结果才计入评价，并与现场结果分开报告。</li>
+          </ol></article>
+      </div>
+
+      <h3 class="hsub">参与人员<small>3—5 名；方括号内为待填写的联系人，姓名与电话不在网站公开</small></h3>
+      <table class="tbl wrap">
+        <thead><tr><th>角色</th><th>拟联系单位</th><th>联系途径</th><th>承担工作</th><th>联系人</th></tr></thead>
+        <tbody>
+          <tr><td><b>县林草技术人员</b></td><td>民勤县林业和草原局或县治沙站</td><td>指导老师引荐，或单位公开电话</td><td>样点可达性与路线建议，陪同外业 1—2 天，参加用户试用</td><td><span class="ph">[姓名·电话]</span></td></tr>
+          <tr><td><b>治沙科研人员</b></td><td>甘肃省治沙研究所（民勤治沙综合试验站）</td><td>邮件说明来意，附平台链接</td><td>审定判级表，参加现场调查 1 天，裁定影像判读分歧</td><td><span class="ph">[姓名·邮箱]</span></td></tr>
+          <tr><td><b>地理或遥感教师</b></td><td>团队所在学校的地理、遥感相关专业</td><td>校内联系</td><td>担任第二判读员，指导误差分析</td><td><span class="ph">[姓名·邮箱]</span></td></tr>
+          <tr><td><b>遥感专业研究生</b><small>可选</small></td><td>同上</td><td>校内联系</td><td>协助影像复核，必要时替代第二判读员</td><td><span class="ph">[姓名]</span></td></tr>
+          <tr><td><b>市级林草监测人员</b><small>可选</small></td><td>武威市林业和草原局</td><td>经县林草部门介绍</td><td>参加用户试用，从市级角度评价排序与措施</td><td><span class="ph">[姓名·电话]</span></td></tr>
+        </tbody>
+      </table>
+
+      <h3 class="hsub">通过标准<small>低于最低值不发布“已验证”结论</small></h3>
+      <table class="tbl wrap pass">
+        <thead><tr><th>方法</th><th>指标</th><th>最低通过值</th><th>目标值</th></tr></thead>
+        <tbody>
+          <tr><td rowspan="2"><b>A 遥感回检</b></td><td>总体精度</td><td class="num">≥ 80%</td><td class="num">≥ 85%</td></tr>
+          <tr><td>Kappa</td><td class="num">≥ 0.65</td><td class="num">≥ 0.75</td></tr>
+          <tr><td rowspan="2"><b>B 一级现场</b></td><td>现场等级与预测相差不超过一级的样点比例</td><td class="num">≥ 70%</td><td class="num">≥ 80%</td></tr>
+          <tr><td>荒漠化与非荒漠化（稳定与其余四级）判别一致率</td><td class="num">≥ 80%</td><td class="num">≥ 90%</td></tr>
+          <tr><td rowspan="3"><b>B 二级影像</b></td><td>两名判读员等级一致率</td><td class="num">≥ 70%</td><td class="num">≥ 85%</td></tr>
+          <tr><td>影像判级与现场判级相差不超过一级</td><td class="num">≥ 80%</td><td class="num">≥ 90%</td></tr>
+          <tr><td>影像判级与预测相差不超过一级（含不可达格网）</td><td class="num">≥ 70%</td><td class="num">≥ 80%</td></tr>
+          <tr><td rowspan="3"><b>C 用户试用</b></td><td>三项任务完成率</td><td class="num">≥ 70%</td><td class="num">≥ 85%</td></tr>
+          <tr><td>单项任务平均用时</td><td class="num">≤ 5 分钟</td><td class="num">≤ 3 分钟</td></tr>
+          <tr><td>认为“可在工作中参考”的参与人员</td><td class="num">过半</td><td class="num">三分之二以上</td></tr>
+        </tbody>
+      </table>
+      <p class="note">达到最低值但未到目标值：可作筛查工具使用，同时公布误差。低于最低值：先查明原因（标签阈值、影像配准、等级定义），调整后复测。30—40 个样点的比例估计，95% 置信区间约 ±13—16 个百分点，结果连同区间一并报告。</p>
+
+      <div class="ops">
+        <div><h4>预算（估算）</h4>
+          <table class="tbl budget">
+            <tbody>
+              <tr><td>往返交通</td><td>2 人往返兰州，含兰州—武威—民勤城际</td><td class="num">3,600</td></tr>
+              <tr><td>当地包车</td><td>4 天，含司机与油费，约 600 元/天</td><td class="num">2,400</td></tr>
+              <tr><td>住宿</td><td>民勤县城，标间 5 晚</td><td class="num">1,000</td></tr>
+              <tr><td>餐费</td><td>2 人 × 6 天 × 80 元</td><td class="num">960</td></tr>
+              <tr><td>外业耗材</td><td>样方绳、卷尺、记录板、充电宝</td><td class="num">300</td></tr>
+              <tr><td>意外险</td><td>2 人短期意外险</td><td class="num">100</td></tr>
+              <tr><td>影像与软件</td><td>公开影像、免费软件</td><td class="num">0</td></tr>
+              <tr><td>不可预见费</td><td>约 10%</td><td class="num">840</td></tr>
+              <tr class="sum"><td>合计</td><td>元，以实际报价为准</td><td class="num">9,200</td></tr>
+            </tbody>
+          </table></div>
+        <div><h4>数据回传</h4>
+          <ul>
+            <li>现场用离线表单（如 ODK Collect）逐点记录，无信号时存在手机里；每晚连上网络后上传团队共享网盘，同时拷一份到移动硬盘。</li>
+            <li>样点编号为“MQ-等级-序号”（如 MQ-4-03），照片按“编号_样方_方向”命名。</li>
+            <li>乙 每晚核对缺项和坐标，发现问题次日补测。</li>
+            <li>两名判读员各填一份影像复核表并截图存档，第 8 周前交 甲 合并。</li>
+            <li>用户试用用不含姓名的在线问卷和观察记录表，当天回传。</li>
+          </ul></div>
+        <div><h4>隐私处理</h4>
+          <ul>
+            <li>不得记录农牧民的姓名、电话和住址；口头询问土地利用时只记回答内容。</li>
+            <li>照片避开人脸、车牌和门牌，无法避开的在公开前打码。</li>
+            <li>试用参与人员以 U1—U5 编号，只保留单位类型和岗位类别，只记操作用时，不录像。</li>
+            <li>联系人姓名和电话只存在负责人本地，网站和公开材料一律用占位符。</li>
+            <li>公开样点坐标时降到 0.01°（与 1 km 格网一致），不公开耕地和居民点内的精确位置；原始照片与问卷在项目结束一年后删除。</li>
+          </ul></div>
+      </div>
+
+      <div class="weeks">
+        <div style="--w:2"><b>第 1—2 周</b><span>筛选样点、联系人员、确定判级表、准备影像与离线表单</span></div>
+        <div style="--w:2"><b>第 3—4 周</b><span>遥感回检；影像复核第一轮（现场样点）</span></div>
+        <div style="--w:4"><b>第 5—8 周</b><span>外业现场调查（一次，4 天）；影像复核第二轮与裁定；用户试用</span></div>
+        <div style="--w:4"><b>第 9—12 周</b><span>误差分析、调整阈值或模型，发布改进版和验证结果</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7 安全使用 -->
+  <section class="panel reg sec" id="a7" data-anim>
+    <div class="sh"><span class="no num">07</span><div><h2>数据、不确定性与安全使用</h2><p>按大赛对生态识别类应用的要求，说明数据来源、模型不确定性、可能误差和使用边界。</p></div></div>
+    <div class="safe">
+      <div><b>数据来源</b><p>全部为公开数据：ESA CCI、NASA MODIS、NASA NEX-GDDP-CMIP6、国家林草局公开调查、geoBoundaries 与 DataV 边界。</p><a class="lk" href="data.html">数据来源页</a></div>
+      <div><b>模型不确定性</b><p>每格每年给出置信度与 90% 等级区间；三个情景只用一个气候模式（IITM-ESM）。</p><a class="lk" href="model.html#m10">模型说明 · 10</a></div>
+      <div><b>可能的误差</b><p>历史等级是遥感代理标签，天然裸地易被评高；未来土地覆盖固定为 2020 年；地下水、大风为代理指标。</p><a class="lk" href="model.html#m14">模型说明 · 14</a></div>
+      <div><b>使用边界</b><p>用于筛查和排序，不替代国家调查与实地勘查；措施建议不是已批复工程，不宜直接用于考核或资金分配。</p><a class="lk" href="data.html#s11">署名、许可与免责</a></div>
+    </div>
+  </section>
+
+  <!-- 8 可持续 -->
+  <section class="panel reg sec" id="a8" data-anim>
+    <div class="sh"><span class="no num">08</span><div><h2>可持续、推广与开放</h2><p>低成本运行，换数据即可换地区。</p></div></div>
+    <div class="cards c3">
+      <article class="src"><header class="lD"><i class="num">$</i><b>成本与维护</b></header>
+        <p>数据全部免费；网站为静态页面，浏览器直接打开即可离线运行，无需服务器。在一台笔记本电脑上，完整训练约 35 分钟，每个新增情景推演约 7 分钟，可每年随新遥感数据更新。</p></article>
+      <article class="src"><header class="lD"><i class="num">↗</i><b>推广路径</b></header>
+        <p>输入数据均为全球覆盖，替换边界和标签阈值即可迁移到内蒙古、华北或中亚等其他旱区。下一步计划接入地面监测站与样地数据，并把汇总单元细化到乡镇。</p></article>
+      <article class="src"><header class="lD"><i class="num">©</i><b>开放与合作</b></header>
+        <p>以 CC BY-NC-SA 4.0 开放；数据处理脚本、模型说明与参数配置、锚点年份栅格均可下载。可面向县级部门提供规划前期筛查，面向学校与科普机构免费使用。</p></article>
+    </div>
+  </section>
+
+  <!-- 9 对照 -->
+  <section class="panel reg sec" id="a9" data-anim>
+    <div class="sh"><span class="no num">09</span><div><h2>参赛材料与评审标准对照</h2><p>大赛要求的五项材料和六项评审标准，在本平台中的对应位置。</p></div></div>
+    <div class="cmp2">
+      <table class="tbl">
+        <thead><tr><th>提交材料</th><th>对应内容</th></tr></thead>
+        <tbody>
+          <tr><td><b>项目陈述</b><small>问题、用户、AI 任务、方案逻辑</small></td><td>本页 <a class="lk" href="#a2">02</a>—<a class="lk" href="#a5">05</a></td></tr>
+          <tr><td><b>演示视频</b><small>不超过 3 分钟</small></td><td><a class="lk" href="assets/video/demo.mp4" target="_blank" rel="noopener">本地演示视频（MP4，2 分 35 秒）</a>：电脑端与手机端操作，首页与地区预测详解，其余板块速览</td></tr>
+          <tr><td><b>可运行成果</b><small>演示链接或代码仓库</small></td><td>本网站（打开 <code>index.html</code> 即可离线运行）；<code>tools/</code> 下的数据处理脚本；在线演示与代码仓库见 <a class="lk" href="#team">01 · 团队信息</a></td></tr>
+          <tr><td><b>数据与 AI 声明</b><small>数据来源、模型和工具</small></td><td><a class="lk" href="data.html">数据来源</a>、<a class="lk" href="model.html">模型说明</a>、本页 <a class="lk" href="#a7">07</a></td></tr>
+          <tr><td><b>验证计划</b><small>用户、场景、测试方法</small></td><td>本页 <a class="lk" href="#a6">06</a></td></tr>
+        </tbody>
+      </table>
+      <div class="crit" id="crit">
+        <div class="r"><span>真实问题与气候价值</span><i style="--w:20"></i><b class="num">20%</b><em><a class="lk" href="#a2">02</a> · 历史记录</em></div>
+        <div class="r"><span>AI 方法与技术有效性</span><i style="--w:20"></i><b class="num">20%</b><em><a class="lk" href="#a4">04</a> · 模型说明</em></div>
+        <div class="r"><span>可行性与用户体验</span><i style="--w:20"></i><b class="num">20%</b><em><a class="lk" href="#a5">05</a> · <a class="lk" href="#a6">06</a> · 首页 / 地区页</em></div>
+        <div class="r"><span>市场可持续性</span><i style="--w:15"></i><b class="num">15%</b><em><a class="lk" href="#a8">08</a></em></div>
+        <div class="r"><span>传播与公众采纳</span><i style="--w:15"></i><b class="num">15%</b><em>历史记录 · <a class="lk" href="#a3">03</a></em></div>
+        <div class="r"><span>可扩展性、伦理与开放</span><i style="--w:10"></i><b class="num">10%</b><em><a class="lk" href="#a7">07</a> · <a class="lk" href="#a8">08</a></em></div>
+      </div>
+    </div>
+  </section>
+  <!-- 10 问答 -->
+  <section class="panel reg sec" id="a10" data-anim>
+    <div class="sh"><span class="no num">10</span><div><h2>常见问题 Q&amp;A</h2><p>评委、用户和读者最常问的几个问题。点击问题展开，右侧可快速跳转。</p></div></div>
+    <div class="qas">
+        <details class="qa" id="q1"><summary><i class="num">Q01</i><b>这个平台能直接告诉我哪块地会沙化吗？</b><span class="chev" aria-hidden="true"></span></summary>
+          <div class="ans"><p>不能给出确定答案。平台给出的是每个约 1 km 格网在不同气候情景下的<b>风险等级与变化倾向</b>，附有置信度和 90% 区间，适合用来筛查和排序：先看哪里风险高、在变坏，再安排实地核查。</p><a class="lk" href="index.html">首页 · 逐年等级图 ›</a></div></details>
+        <details class="qa" id="q2"><summary><i class="num">Q02</i><b>“荒漠化代理等级”和官方调查等级有什么不同？</b><span class="chev" aria-hidden="true"></span></summary>
+          <div class="ans"><p>代理等级由土地覆盖类型和 NDVI 按固定规则生成，可以逐年、逐格计算；官方等级来自国家荒漠化调查，约五年一次，公开数据多到省级。平台只用 2019 年省级官方面积校准总量，不把代理等级说成官方结论。</p><a class="lk" href="model.html#m4">模型说明 · 04 ›</a></div></details>
+        <details class="qa" id="q3"><summary><i class="num">Q03</i><b>三种气候情景的结果为什么差别很小？</b><span class="chev" aria-hidden="true"></span></summary>
+          <div class="ans"><p>模型用 Markov 矩阵固定了每个等级五年内转出的数量，气候情景主要改变“哪些格网先转”。所以五省总面积几乎相同，差别落在空间位置上：2050 年约 2%—2.5% 的格网等级不同。首页的“情景差异”图层可以直接看到这些格网。</p><a class="lk" href="model.html#m11">模型说明 · 11 ›</a></div></details>
+        <details class="qa" id="q4"><summary><i class="num">Q04</i><b>置信度 85% 是不是说预测有 85% 的把握？</b><span class="chev" aria-hidden="true"></span></summary>
+          <div class="ans"><p>不是。置信度是模型概率对最终分配等级的相对支持程度，还没有用独立的实地样点校准，不能直接当作“正确率”。比较不同地区、不同年份时，可以把它当作相对可靠程度来看。</p><a class="lk" href="model.html#m10">模型说明 · 10 ›</a></div></details>
+        <details class="qa" id="q5"><summary><i class="num">Q05</i><b>历史年份（2000—2025）的数据是实测吗？</b><span class="chev" aria-hidden="true"></span></summary>
+          <div class="ans"><p>2000、2005、2010、2015、2020、2025 六个年份来自卫星遥感生成的代理等级；中间年份由相邻锚点之间的年度化方法补出，页面上标为“插值”。面积再按 2019 年官方数据校准。</p><a class="lk" href="data.html#s5">数据来源 · 05 ›</a></div></details>
+        <details class="qa" id="q6"><summary><i class="num">Q06</i><b>地下水位、大风日数为什么标着“代理”？</b><span class="chev" aria-hidden="true"></span></summary>
+          <div class="ans"><p>这两项不是监测井或气象站的实测数据，而是根据干旱程度、风险变化和地区基线构造的参数化指标，只用于说明变化方向。驱动因子贡献同样是代理归因，不是因果识别。</p><a class="lk" href="data.html#s6">数据来源 · 06 ›</a></div></details>
+        <details class="qa" id="q7"><summary><i class="num">Q07</i><b>防护措施建议是怎么来的？能直接照做吗？</b><span class="chev" aria-hidden="true"></span></summary>
+          <div class="ans"><p>2030 年起的建议由模型风险等级、变化方向与措施模板匹配生成，并给出政策与技术规范出处，适合作为规划前期的参考。它不是已批复的工程方案，具体实施仍需结合实地调查、水资源条件和主管部门要求。</p><a class="lk" href="region.html#a=620621&amp;y=2030&amp;s=measures">地区预测 · 防护措施 ›</a></div></details>
+        <details class="qa" id="q8"><summary><i class="num">Q08</i><b>这套方法能用到其他地区吗？</b><span class="chev" aria-hidden="true"></span></summary>
+          <div class="ans"><p>可以。输入的土地覆盖、NDVI 和 CMIP6 数据都是全球覆盖，更换研究区边界、重新校准标签阈值并重新训练后，可以迁移到内蒙古、华北或中亚等旱区。</p><a class="lk" href="#a8">本页 · 08 ›</a></div></details>
+        <details class="qa" id="q9"><summary><i class="num">Q09</i><b>数据能下载和引用吗？</b><span class="chev" aria-hidden="true"></span></summary>
+          <div class="ans"><p>可以。导航栏底部可下载 11 个锚点年份的 1 km 栅格；模型说明与参数配置可在模型说明页下载。平台以 CC BY-NC-SA 4.0 许可，引用时请使用数据来源页提供的署名文字。</p><a class="lk" href="data.html#s11">署名、许可与免责 ›</a></div></details>
+        <details class="qa" id="q10"><summary><i class="num">Q10</i><b>网站需要联网或安装软件吗？</b><span class="chev" aria-hidden="true"></span></summary>
+          <div class="ans"><p>不需要安装软件。用 Chrome 或 Edge 直接打开 <code>index.html</code> 即可运行，模型数据都随网站一起提供。只有地图底图来自天地图在线服务，需要联网并配置密钥；离线时地图自动改用简化示意底图，其余功能照常可用。</p><a class="lk" href="index.html">平台首页 ›</a></div></details>
+        <details class="qa" id="q11"><summary><i class="num">Q11</i><b>如何反馈问题或联系团队？</b><span class="chev" aria-hidden="true"></span></summary>
+          <div class="ans"><p>欢迎通过项目联系邮箱 2216729028@qq.com 反馈数据错误、使用问题或合作意向。</p><a class="lk" href="#team">本页 · 团队信息 ›</a></div></details>
+    </div>
+  </section>
+  </div>
+
+  <aside class="toc" data-anim aria-label="本页目录">
+    <div class="panel reg">
+      <h3>本页目录</h3>
+      <ol id="toc">
+        <li><a href="#a1"><span class="num">01</span>参赛信息与团队</a></li>
+        <li><a href="#a2"><span class="num">02</span>真实的问题</a></li>
+        <li><a href="#a3"><span class="num">03</span>服务对象</a></li>
+        <li><a href="#a4"><span class="num">04</span>AI 的任务</a></li>
+        <li><a href="#a5"><span class="num">05</span>方案逻辑与使用流程</a></li>
+        <li><a href="#a6"><span class="num">06</span>90 天验证计划</a></li>
+        <li><a href="#a7"><span class="num">07</span>数据与安全使用</a></li>
+        <li><a href="#a8"><span class="num">08</span>可持续、推广与开放</a></li>
+        <li><a href="#a9"><span class="num">09</span>材料与评审对照</a></li>
+        <li><a href="#a10"><span class="num">10</span>常见问题 Q&amp;A</a></li>
+      </ol>
+    </div>
+    <div class="panel reg qnav">
+      <h3>问答导航<button type="button" id="qaAll" class="qa-all">全部展开</button></h3>
+      <ol id="qnav"><li><a href="#q1" data-q="q1"><span class="num">Q01</span>能否直接判断沙化</a></li><li><a href="#q2" data-q="q2"><span class="num">Q02</span>代理等级与官方等级</a></li><li><a href="#q3" data-q="q3"><span class="num">Q03</span>情景差别为何很小</a></li><li><a href="#q4" data-q="q4"><span class="num">Q04</span>置信度的含义</a></li><li><a href="#q5" data-q="q5"><span class="num">Q05</span>历史年份是否实测</a></li><li><a href="#q6" data-q="q6"><span class="num">Q06</span>“代理”指标</a></li><li><a href="#q7" data-q="q7"><span class="num">Q07</span>措施建议能否照做</a></li><li><a href="#q8" data-q="q8"><span class="num">Q08</span>能否用于其他地区</a></li><li><a href="#q9" data-q="q9"><span class="num">Q09</span>下载与引用</a></li><li><a href="#q10" data-q="q10"><span class="num">Q10</span>是否需要联网</a></li><li><a href="#q11" data-q="q11"><span class="num">Q11</span>反馈与联系</a></li></ol>
+    </div>
+  </aside>
+  </div>
+</main>
+
+
+<script src="assets/js/nav.js?v=20261010c"></script>
+<script src="assets/js/about.js?v=20261010c"></script>
+</body>
+</html>

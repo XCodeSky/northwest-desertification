@@ -1,0 +1,548 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>模型说明 · 西北荒漠化灾害预测及防护平台</title>
+<meta name="description" content="NW-DESERT-1K v1.1：西北五省 1 km LightGBM–CA-Markov 多情景年度荒漠化预测模型的结构、参数、验证、情景设置与限制。">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<style>html{background:#E6E8E4}</style>
+<script>(function(){var h=document.documentElement;h.classList.add('pre');try{if(sessionStorage.getItem('nw-nav'))h.classList.add('internal')}catch(e){}setTimeout(function(){h.classList.remove('pre')},3000)})();</script>
+<link rel="stylesheet" href="assets/css/site.css?v=20261010c">
+<link rel="stylesheet" href="assets/css/data.css?v=20261010c">
+<link rel="stylesheet" href="assets/css/model.css?v=20261010g">
+</head>
+<body>
+
+<nav class="side" aria-label="主导航">
+  <div class="brand">
+    <div class="mark" aria-hidden="true">
+      <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="#1A3441" stroke-width="2.4" stroke-linecap="square"><path d="M2 9c4-3 7-3 11 0s7 3 13 0"/><path d="M2 15c4-3 7-3 11 0s7 3 13 0"/><path d="M2 21c4-3 7-3 11 0s7 3 13 0"/></svg>
+    </div>
+    <div><b>西北荒漠化</b><small>灾害预测及防护平台</small></div>
+  </div>
+  <ul class="nav-list">
+    <li><a href="index.html"><svg viewBox="0 0 24 24"><path d="M3 11l9-7 9 7v9H3z"/><path d="M9 20v-6h6v6"/></svg>首页</a></li>
+    <li><a href="region.html"><svg viewBox="0 0 24 24"><path d="M3 6l6-2 6 2 6-2v14l-6 2-6-2-6 2z"/><path d="M9 4v14M15 6v14"/></svg>地区预测</a>
+      <ul class="nav-sub"><li><a href="region.html#s=measures" data-sub="measures"><svg viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 4.5-3.4 8-8 9-4.6-1-8-4.5-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg>防护措施</a></li></ul></li>
+    <li><a href="data.html"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="5.5" rx="8" ry="2.5"/><path d="M4 5.5v13c0 1.4 3.6 2.5 8 2.5s8-1.1 8-2.5v-13"/><path d="M4 12c0 1.4 3.6 2.5 8 2.5s8-1.1 8-2.5"/></svg>数据来源</a>
+      <ul class="nav-sub">
+        <li><a href="data.html#s1" data-sub="ds-s1"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="7" height="7"/><rect x="13" y="4" width="7" height="7"/><rect x="4" y="13" width="7" height="7"/><rect x="13" y="13" width="7" height="7"/></svg>概览</a></li>
+        <li><a href="data.html#s5" data-sub="ds-s5"><svg viewBox="0 0 24 24"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9z"/><path d="M4 7.5l8 4.5 8-4.5M12 12v9"/></svg>模型</a></li>
+        <li><a href="data.html#s11" data-sub="ds-s11"><svg viewBox="0 0 24 24"><path d="M14 4l6 6-10 10H4v-6z"/><path d="M12 6l6 6"/></svg>署名和免责</a></li>
+      </ul></li>
+  </ul>
+  <div class="nav-sep"></div>
+  <ul class="nav-list">
+    <li><a href="history.html"><svg viewBox="0 0 24 24"><path d="M4 4.5A2.5 2.5 0 0 1 6.5 2H20v18H6.5A2.5 2.5 0 0 0 4 22z"/><path d="M4 17.5h16"/><path d="M8 6h8M8 9.5h5"/></svg>历史记录</a>
+      <ul class="nav-sub">
+        <li><a href="history.html" data-sub="hs-road"><svg viewBox="0 0 24 24"><path d="M8 21L10.5 3M16 21L13.5 3"/><path d="M12 6v2.5M12 11v2.5M12 16v2.5"/></svg>沙海长路</a></li>
+        <li><a href="heroes.html" data-sub="hs-people"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.4"/><path d="M4.5 20.5c0-3.6 3.3-6 7.5-6s7.5 2.4 7.5 6"/></svg>漠上群英</a></li>
+      </ul></li>
+    <li><a href="model.html" class="on" aria-current="page"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><path d="M17.5 14v7M14 17.5h7"/></svg>模型说明</a></li>
+    <li><a href="about.html"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.3"/></svg>关于项目</a></li>
+  </ul>
+  <div class="nav-foot">
+    <div class="status">
+      <div><span class="dot"></span>完整版 1 km 模型</div>
+      <div>年份 <b>2000–2050</b>（逐年）</div>
+      <div>网格 <b>0.01°</b>（名义约 1 km）</div>
+    </div>
+    <a class="btn-dl" href="assets/downloads/desertification_1km_2000_2050_anchors.zip" download>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12M7 10l5 5 5-5M4 20h16"/></svg>
+      下载锚点年份栅格
+    </a>
+  </div>
+</nav>
+<main class="ds md">
+  <header class="top ds-head" data-anim>
+    <div class="ttl">
+      <div class="crumb"><a href="index.html">西北五省区</a><i>/</i><b>模型说明</b></div>
+      <h1>模型说明<small class="num">NW-DESERT-1K v1.1</small></h1>
+    </div>
+    <div class="top-tools">
+      <a class="btn-o" href="assets/downloads/website_model_description.md" download><svg viewBox="0 0 24 24"><path d="M12 4v11M7.5 10.5L12 15l4.5-4.5M5 20h14"/></svg>模型说明 .md</a>
+      <a class="btn-d" href="assets/downloads/model_config.json" download><svg viewBox="0 0 24 24"><path d="M12 4v11M7.5 10.5L12 15l4.5-4.5M5 20h14"/></svg>参数配置 .json</a>
+    </div>
+  </header>
+
+  <div class="ds-body">
+  <div class="ds-col">
+
+  <!-- 摘要 -->
+  <section class="panel reg ds-sum" data-anim>
+    <p class="lead">沙地的变化缓慢，在五年及以上的尺度上，变化的方向性才较为明显。本模型从 <b>2000—2025 年</b>的卫星记录里学习这种缓慢变化：每个约 1 km 的格网，五年之后是停在原来的等级，还是变轻、变重。学到的规律交给 CA-Markov 在地图上逐格分配，再由 SSP1-2.6、SSP2-4.5、SSP5-8.5 三种情景的降水与气温轻轻调整方向，得到 <b>2026—2050 年</b>的逐年预测。</p>
+    <div class="stats">
+      <div><b class="num">314<small>万</small></b><span>研究区<br>有效格网</span></div>
+      <div><b class="num">1570<small>万</small></b><span>五年转移<br>训练样本</span></div>
+      <div><b class="num">11</b><span>每个格网的<br>输入特征</span></div>
+      <div><b class="num">0.846<small>/ 0.816</small></b><span>2020→2025 留出 Kappa<br>逐像元 / 最终制图</span></div>
+      <div><b class="num">3</b><span>直接驱动的<br>气候情景</span></div>
+    </div>
+  </section>
+
+  <!-- 1 概况 -->
+  <section class="panel reg sec" id="m1" data-anim>
+    <div class="sh"><span class="no num">01</span><div><h2>模型概况</h2><p>名称、范围与性质。网站各页所说的“1 km 模型”“模型预测”，都指这一个模型。</p></div></div>
+    <div class="cards c12">
+      <article class="src">
+        <header class="lB"><i class="num">ID</i><b>模型档案</b><span class="in">v1.1 · 2026-10-09</span></header>
+        <dl>
+          <dt>网站展示名称</dt><dd>西北荒漠化 1 km 多情景年度预测模型</dd>
+          <dt>简称</dt><dd class="num">NW-DESERT-1K v1.1</dd>
+          <dt>技术名称</dt><dd>LightGBM–CA-Markov 多情景荒漠化等级预测模型</dd>
+          <dt>代码内部标识</dt><dd><code>lightgbm_1km_full</code></dd>
+          <dt>研究区域</dt><dd>新疆、甘肃、青海、宁夏、陕西</dd>
+          <dt>历史 · 预测</dt><dd class="num">2000—2025 · 2026—2050</dd>
+          <dt>空间尺度</dt><dd>0.01° 经纬度格网，名义约 1 km</dd>
+          <dt>气候情景 · 模式</dt><dd class="num">SSP1-2.6 · SSP2-4.5 · SSP5-8.5　IITM-ESM</dd>
+          <dt>输出等级</dt><dd>稳定、轻度、中度、重度、极重度</dd>
+          <dt>模型性质</dt><dd class="q">研究型遥感代理与情景预测模型</dd>
+        </dl>
+      </article>
+      <article class="src">
+        <header class="lE"><i class="num">Q</i><b>它回答什么问题</b><span class="in der">一句话</span></header>
+        <p class="big">如果过去二十五年的变化方式持续，在不同的气候情景下，西北五省每一个约 1 km 的地块，在 2026—2050 年的每一年会处在哪一级荒漠化风险？</p>
+        <h4>三个情景是怎样得到的</h4>
+        <p>三个情景<b>共用同一个历史训练模型和同一套参数</b>，没有分别重新训练。它们之间的差别，只来自各自的降水、气温和由此计算的气候压力，这些压力改变的是“哪些格网更容易转变”。</p>
+        <h4>它不做什么</h4>
+        <p>不模拟未来的土地利用规划、生态工程或地下水开采；不把等级换算成官方调查结论。等级与面积的口径见 <a class="lk" href="data.html#s5">数据来源 · 模型派生数据</a>。</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- 2 路径 -->
+  <section class="panel reg sec" id="m2" data-anim>
+    <div class="sh"><span class="no num">02</span><div><h2>总体路径</h2><p>从卫星影像到网站上的每一张图，中间经过六步。前两步整理历史，中间两步学习与分配，最后两步生成逐年产品。</p></div></div>
+    <ol class="flow">
+      <li class="lB"><span class="st num">1</span><b>ESA CCI 土地覆盖 + MODIS NDVI</b><small>历史地表状态</small><i>输入</i></li>
+      <li class="lB"><span class="st num">2</span><b>五级荒漠化代理标签</b><small>2000—2025，六个锚点</small><i>标签</i></li>
+      <li class="lE"><span class="st num">3</span><b>LightGBM 转移概率</b><small>五个五年转移期训练</small><i>学习</i></li>
+      <li class="lE"><span class="st num">4</span><b>CA-Markov 竞争分配</b><small>Markov 需求 · 15×15 邻域 · 气候压力</small><i>分配</i></li>
+      <li class="lE"><span class="st num">5</span><b>五年锚点 → 逐年</b><small>2030—2050 锚点分五批展开</small><i>年度化</i></li>
+      <li class="out"><span class="st num">6</span><b>等级 · 置信度 · 90% 区间 · 面积 · 风险指数</b><small>网站展示</small><i>输出</i></li>
+    </ol>
+    <ol class="steps9">
+      <li><b>遥感预处理</b>获取、投影、重采样，修复研究区内的缺失值。</li>
+      <li><b>代理标签</b>土地覆盖与 NDVI 阈值生成五级历史等级。</li>
+      <li><b>训练样本</b>五个历史转移期，每个格网 11 项特征。</li>
+      <li><b>转移概率</b>LightGBM 给出每个格网进入五个等级的概率。</li>
+      <li><b>转移数量</b>历史 Markov 矩阵决定五年内各等级转出多少格网。</li>
+      <li><b>适宜度修正</b>邻域比例与情景气候压力修正每个格网的转移适宜度。</li>
+      <li><b>空间分配</b>CA 竞争分配决定转移发生在哪里。</li>
+      <li><b>年度化</b>五年锚点间的变化分成五批，逐年展开。</li>
+      <li><b>产品输出</b>等级、置信度、90% 区间、统计表和 4K 地图。</li>
+    </ol>
+  </section>
+
+  <!-- 3 时空 -->
+  <section class="panel reg sec" id="m3" data-anim>
+    <div class="sh"><span class="no num">03</span><div><h2>空间与时间配置</h2><p>所有年份、所有情景共用同一张格网。</p></div></div>
+    <div class="prin">
+      <div><span>坐标参考</span><b>EPSG:4326</b><p>WGS 84 经纬度。</p></div>
+      <div><span>分辨率</span><b>0.01°</b><p>名义约 1 km，东西向宽度随纬度变化。</p></div>
+      <div><span>外包框</span><b>73—112°E</b><p>31—50°N，矩形格网 3900 × 1900。</p></div>
+      <div><span>有效格网</span><b>3,140,227</b><p>西北五省掩膜内，每年相同。</p></div>
+      <div><span>年度序列</span><b>51 年</b><p>2000—2050；新增情景各 25 年。</p></div>
+      <div><span>NoData</span><b>255 / NaN</b><p>等级与区间为 255，置信度为 NaN。</p></div>
+    </div>
+    <div class="mtl" id="mtl" aria-label="锚点与年度化示意"></div>
+    <p class="note">“1 km”是名义尺度。经纬度格网在不同纬度的实际宽度不同，面积统计按每个像元的球面实际面积计算，不把一个格网直接当作 1 km²。</p>
+  </section>
+
+  <!-- 4 输入与标签 -->
+  <section class="panel reg sec" id="m4" data-anim>
+    <div class="sh"><span class="no num">04</span><div><h2>历史输入与代理标签<em class="tag lB">输入</em></h2><p>训练目标由土地覆盖和 NDVI 按规则生成，不是官方地面调查标签。</p></div></div>
+    <div class="cards c2">
+      <article class="src">
+        <header class="lB"><i class="num">B01</i><b>ESA CCI 年度土地覆盖</b><span class="in">300 m → 0.01°</span></header>
+        <dl><dt>使用年份</dt><dd class="num">2000、2005、2010、2015、2020</dd><dt>2025 年</dt><dd>沿用 2020 年土地覆盖</dd><dt>重采样</dt><dd>众数聚合至 0.01° 格网</dd><dt>归并类别</dt><dd>耕地、林地、灌丛、草地 / 稀疏植被、水体、冰雪、裸地、不透水面、湿地</dd></dl>
+      </article>
+      <article class="src">
+        <header class="lB"><i class="num">B02</i><b>MODIS/Terra MOD13A1.061 NDVI</b><span class="in">500 m · 16 天</span></header>
+        <dl><dt>使用年份</dt><dd class="num">2000、2005、2010、2015、2020、2025</dd><dt>代表时相</dt><dd>最接近当年 7 月 15 日的合成影像</dd><dt>处理</dt><dd>质量检查、拼接、重采样、研究区内缺失值修复</dd><dt>缺失值修复</dt><dd class="q">孤立空洞用最近有效格网填补，限制在五省掩膜内；修复后每年 3,140,227 个有效格网，内部 NoData 为 0</dd></dl>
+      </article>
+    </div>
+    <div class="rulebox">
+      <h3>五级代理标签规则<small>按土地覆盖类型分别取 NDVI 阈值</small></h3>
+      <div class="rule" id="rule"></div>
+      <p class="note">林地、水体、湿地等其他有效土地覆盖默认归入稳定。规则透明、可以复算，但天然裸地和 NDVI 极低的地区容易得到较高等级，所以网站上一律称“荒漠化代理等级”或“风险等级”。</p>
+    </div>
+  </section>
+
+  <!-- 5 LightGBM -->
+  <section class="panel reg sec" id="m5" data-anim>
+    <div class="sh"><span class="no num">05</span><div><h2>LightGBM 转移模型<em class="tag lE">学习</em></h2><p>对每个格网，模型看它现在的样子和周围的样子，估计五年后它进入每个等级的概率。</p></div></div>
+    <div class="m5grid">
+      <div class="fbox">
+        <h3>11 项输入特征与重要性<small>按 gain 归一化，表示分裂贡献，不代表因果</small></h3>
+        <div class="fimp" id="fimp"></div>
+        <div class="fleg"><span><i style="background:#1A3441"></i>当前状态</span><span><i style="background:#1E7B4D"></i>植被</span><span><i style="background:#C4702F"></i>15×15 邻域</span><span><i style="background:#8E989C"></i>位置</span></div>
+        <p class="fx-s"><code>ndvi_5y_trend = clip((NDVI 当前锚点 − NDVI 上一锚点) / 5, −0.04, 0.04)</code></p>
+        <p class="note">邻域特征为 15×15 个格网（约 15 km × 15 km）窗口内五个等级各自的占比，研究区外格网不计入分母。早期 5 km 原型用 3×3 邻域；1 km 正式版改用 15×15，以保持大致相同的物理范围。</p>
+      </div>
+      <div class="vbox">
+        <h3>训练与时序验证<small>样本数</small></h3>
+        <div class="vd" id="vd"></div>
+        <p class="mlab"><b>逐像元分类</b>LightGBM（完整特征），每格取概率最大的等级</p>
+        <div class="metrics">
+          <div><span>Accuracy</span><b class="num">88.60<small>%</small></b></div>
+          <div><span>Balanced Accuracy</span><b class="num">81.77<small>%</small></b></div>
+          <div><span>Macro-F1</span><b class="num">81.88<small>%</small></b></div>
+          <div><span>Cohen's Kappa</span><b class="num">0.8464</b></div>
+        </div>
+        <p class="mlab fin"><b>最终制图链路</b>LightGBM + CA-Markov，网站地图实际采用</p>
+        <div class="metrics fin">
+          <div><span>Accuracy</span><b class="num">86.40<small>%</small></b></div>
+          <div><span>Balanced Accuracy</span><b class="num">77.53<small>%</small></b></div>
+          <div><span>Macro-F1</span><b class="num">77.92<small>%</small></b></div>
+          <div><span>Cohen's Kappa</span><b class="num">0.8164</b></div>
+        </div>
+        <p class="note">用 2000→2020 的四个转移期训练（420 棵树），留出完整的 2020→2025 检验。“等级保持不变”基线为 87.29%、Kappa 0.8284，最终链路略低于它，见下方对比。时间留出比随机拆分更接近“预测未来”的条件；但指标衡量的是对遥感代理标签的复现，不等于对官方地面调查达到同样精度。</p>
+      </div>
+    </div>
+    <h3 class="hsub">最终参数<small>全部五个转移期重训，CPU，随机种子 42</small></h3>
+    <div class="params">
+      <div><code>boosting_type</code><b>gbdt</b></div><div><code>objective</code><b>multiclass</b></div><div><code>num_class</code><b>5</b></div><div><code>n_estimators</code><b>520</b></div>
+      <div><code>learning_rate</code><b>0.055</b></div><div><code>num_leaves</code><b>64</b></div><div><code>max_depth</code><b>−1</b></div><div><code>min_child_samples</code><b>200</b></div>
+      <div><code>min_child_weight</code><b>0.001</b></div><div><code>min_split_gain</code><b>0.0</b></div><div><code>colsample_bytree</code><b>0.85</b></div><div class="dim"><code>subsample</code><b>0.85</b></div>
+      <div><code>subsample_freq</code><b>0</b></div><div><code>subsample_for_bin</code><b>200,000</b></div><div><code>max_bin</code><b>127</b></div><div><code>reg_alpha</code><b>0.0</b></div>
+      <div><code>reg_lambda</code><b>1.2</b></div><div><code>class_weight</code><b>null</b></div><div><code>force_col_wise</code><b>true</b></div><div><code>n_jobs</code><b>−1</b></div>
+      <div><code>random_state</code><b>42</b></div><div><code>early stopping</code><b>未启用</b></div><div><code>device</code><b>CPU</b></div><div><code>训练特征</code><b>float32 memmap</b></div>
+    </div>
+    <p class="note">配置中保留了 <code>subsample=0.85</code>，但 <code>subsample_freq=0</code>，所以训练时并没有启用按轮次的行采样。</p>
+
+    <h3 class="hsub" id="m5v">六种做法的对比<small>同一训练期与 2020→2025 留出期，验证样本 3,140,227 个格网</small></h3>
+    <div class="vtw"><table class="tbl vcmp" id="vcmp"></table></div>
+    <p class="note">“LightGBM（完整特征）”逐格取概率最大的等级，是上方 0.8464 的口径；“LightGBM + CA-Markov”再按 Markov 矩阵约束各等级的数量，并按邻域在地图上分配，是网站地图的最终输出。数量约束让各等级面积和历史转移结构保持一致，代价是逐格精度下降约 2 个百分点，略低于“等级保持不变”基线。五年之内大多数格网的等级本来就不变，所以这条基线很强；最终链路在总体精度上没有超过它。“Markov 条件众数”在每个等级上都选中了“留在原级”，所以与基线完全相同。</p>
+
+    <h3 class="hsub">五级混淆矩阵与逐类别指标<small>所有指标由同一混淆矩阵计算，可切换模型</small></h3>
+    <div class="seg vseg" id="vseg" role="tablist" aria-label="选择模型"></div>
+    <div class="vgrid">
+      <div class="cmw"><div class="cmcap">行为实际等级，列为预测等级；格中为格网数，下方为占该行的比例（即召回率）</div><div class="cm" id="vcm"></div></div>
+      <div class="vtw"><table class="tbl vpc" id="vpc"></table></div>
+    </div>
+    <details class="vdef">
+      <summary>指标定义</summary>
+      <table class="tbl">
+        <thead><tr><th>指标</th><th>计算式</th><th>含义</th></tr></thead>
+        <tbody>
+          <tr><td>精确率</td><td><code>TP/(TP+FP)</code></td><td>被预测为该等级的像元中，实际属于该等级的比例</td></tr>
+          <tr><td>召回率/敏感度</td><td><code>TP/(TP+FN)</code></td><td>实际属于该等级的像元中，被正确识别的比例</td></tr>
+          <tr><td>特异度</td><td><code>TN/(TN+FP)</code></td><td>实际不属于该等级的像元中，被正确排除的比例</td></tr>
+          <tr><td>F1</td><td><code>2×Precision×Recall/(Precision+Recall)</code></td><td>精确率和召回率的调和平均</td></tr>
+          <tr><td>IoU/Jaccard</td><td><code>TP/(TP+FP+FN)</code></td><td>预测区域与实际区域的交并比</td></tr>
+          <tr><td>阴性预测值</td><td><code>TN/(TN+FN)</code></td><td>被预测为其他等级的像元中，实际不属于该等级的比例</td></tr>
+          <tr><td>假阳性率</td><td><code>FP/(FP+TN)</code></td><td>其他等级被误判为该等级的比例</td></tr>
+          <tr><td>假阴性率</td><td><code>FN/(FN+TP)</code></td><td>该等级被漏判为其他等级的比例</td></tr>
+          <tr><td>一对多准确率</td><td><code>(TP+TN)/N</code></td><td>将该等级视为正类、其余等级视为负类时的准确率</td></tr>
+          <tr><td>类别占比</td><td><code>(TP+FN)/N</code></td><td>该等级在验证样本中的实际比例</td></tr>
+        </tbody>
+      </table>
+    </details>
+    <p class="note">轻度与中度最难分：两级夹在相邻等级之间，错分大多落在相邻一级。重度及以上合并后 F1 约 0.96—0.97，用于圈定重点区域较为可靠。目标标签是遥感代理等级，不是地面调查真值；尚未做留省验证和置信度校准，见 <a class="lk" href="#m14">14 · 主要假设与限制</a>。</p>
+    <div class="vdl">
+      <a class="btn-o" href="assets/downloads/per_class_metrics_1km_2020-2025.xlsx" download><svg viewBox="0 0 24 24"><path d="M12 4v11M7.5 10.5L12 15l4.5-4.5M5 20h14"/></svg>逐类别验证指标 .xlsx</a>
+      <a class="btn-o" href="assets/downloads/model_comparison_1km_2020-2025.xlsx" download><svg viewBox="0 0 24 24"><path d="M12 4v11M7.5 10.5L12 15l4.5-4.5M5 20h14"/></svg>模型对比与混淆矩阵 .xlsx</a>
+    </div>
+  </section>
+
+  <!-- 6 Markov -->
+  <section class="panel reg sec" id="m6" data-anim>
+    <div class="sh"><span class="no num">06</span><div><h2>Markov 转移矩阵<em class="tag lE">数量</em></h2><p>历史上五年之间，各等级的格网有多少留在原地、有多少转向别处。这张表决定“转多少”，不决定“转哪里”。</p></div></div>
+    <div class="mkwrap">
+      <div class="mk" id="mk" role="table" aria-label="五年 Markov 转移矩阵"></div>
+      <div class="mkside">
+        <div class="mkread" id="mkread"></div>
+        <ul class="mkhow">
+          <li>五个历史转移期逐格统计 5×5 经验矩阵。</li>
+          <li>所有计数先加 1（Laplace 平滑），避免出现概率为零的转移。</li>
+          <li>2000→2015 的三期权重为 1，2015→2025 的两期权重为 2，近期变化说话更多。</li>
+          <li>按当前等级逐行归一化，每行合计 100%。</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7 CA-Markov -->
+  <section class="panel reg sec" id="m7" data-anim>
+    <div class="sh"><span class="no num">07</span><div><h2>CA-Markov 空间分配<em class="tag lE">分配</em></h2><p>Markov 矩阵给出数量，LightGBM、邻域和气候压力一起决定位置。三层修正依次相乘，最后在每个类别里重新归一化。</p></div></div>
+    <div class="fxs">
+      <div class="fx"><span class="n num">1</span><div><b>基础融合</b><code>P_base = 0.62 × P_LightGBM + 0.38 × P_Markov</code></div></div>
+      <div class="fx"><span class="n num">2</span><div><b>邻域修正</b><code>P_neighbor = P_base × (0.70 + 0.30 × 目标等级的邻域比例)</code></div></div>
+      <div class="fx"><span class="n num">3</span><div><b>气候修正</b><code>P_final = P_neighbor × exp(0.08 × 气候压力 × 严重度轴)　严重度轴 = [−2, −1, 0, 1, 2]</code></div></div>
+    </div>
+    <div class="demo">
+      <div class="dctl">
+        <h3>气候修正有多大？</h3>
+        <p>拖动滑块改变某个格网的气候压力（−1 到 1），右侧是五个等级各自被乘上的系数。</p>
+        <label class="sl"><span>偏湿凉</span><input type="range" id="cp" min="-1" max="1" step="0.05" value="0.6" aria-label="气候压力"><span>偏干热</span></label>
+        <div class="cpv">气候压力 <b class="num" id="cpv">+0.60</b></div>
+        <p class="note">系数 0.08 是刻意设得很小的。即使压力取到上限 1，极重度的相对适宜度也只提高约 17%，稳定约降低 15%。粗尺度、单一模式的气候数据只轻推方向，不压过历史转移和邻域结构。</p>
+      </div>
+      <div class="dbars" id="dbars"></div>
+    </div>
+    <h3 class="hsub">竞争分配<small>在相同输入、软件版本和随机种子下结果可复现</small></h3>
+    <ol class="alloc">
+      <li>按 Markov 矩阵算出每个起始等级需要转向其他等级的格网数。</li>
+      <li>对每个格网计算 <code>P_final(目标等级) / P_final(保持原等级)</code>。</li>
+      <li>比值最高的格网优先完成转移。</li>
+      <li>已分配的格网不再参与同一五年周期内的其他转移。</li>
+      <li>其余格网保持原等级。</li>
+    </ol>
+  </section>
+
+  <!-- 8 情景 -->
+  <section class="panel reg sec" id="m8" data-anim>
+    <div class="sh"><span class="no num">08</span><div><h2>三套 CMIP6 气候情景<em class="tag lB">驱动</em></h2><p>三个情景使用同一数据集、同一气候模式，只换对应情景的降水和气温。</p></div></div>
+    <div class="scn3">
+      <article style="--sc:#2E8B57"><header><b class="num">SSP1-2.6</b><span>低排放 · 可持续发展路径</span></header>
+        <dl><dt>来源</dt><dd>NASA NEX-GDDP-CMIP6 AWS 原始归档</dd><dt>原始文件</dt><dd class="num">8 个 NetCDF，约 1.60 GiB</dd><dt>输出</dt><dd class="num">2026—2050：100 幅 GeoTIFF、25 张 4K 地图</dd><dt>推演耗时</dt><dd class="num">395.1 秒 · 峰值内存 1.516 GiB</dd></dl></article>
+      <article style="--sc:#1B252B" class="mid"><header><b class="num">SSP2-4.5</b><span>中等排放 · “中间道路”路径</span></header>
+        <dl><dt>来源</dt><dd>Microsoft Planetary Computer 中的 NEX-GDDP-CMIP6 归档</dd><dt>作用</dt><dd>既有基准情景，网站默认显示</dd><dt>输出</dt><dd class="num">2000—2050 完整年度序列，其中 2026—2050 为情景预测</dd></dl></article>
+      <article style="--sc:#C8102E"><header><b class="num">SSP5-8.5</b><span>高排放 · 化石能源密集路径</span></header>
+        <dl><dt>来源</dt><dd>Microsoft Planetary Computer 中的 NEX-GDDP-CMIP6 归档</dd><dt>原始文件</dt><dd class="num">8 个 NetCDF，约 1.60 GiB</dd><dt>输出</dt><dd class="num">2026—2050：100 幅 GeoTIFF、25 张 4K 地图</dd><dt>推演耗时</dt><dd class="num">396.2 秒 · 峰值内存 1.570 GiB</dd></dl></article>
+    </div>
+    <div class="climrow">
+      <div class="clim"><h3>气候节点 · 年降水均值<small>mm</small></h3><svg id="cP" aria-label="三情景年降水节点"></svg></div>
+      <div class="clim"><h3>气候节点 · 年平均气温<small>℃</small></h3><svg id="cT" aria-label="三情景年平均气温节点"></svg></div>
+      <div class="ccfg">
+        <h3>共同配置</h3>
+        <dl><dt>变量</dt><dd><code>pr</code> 年降水 · <code>tas</code> 年平均气温</dd><dt>原始分辨率</dt><dd class="num">0.25°，逐日</dd><dt>气候节点</dt><dd class="num">2025、2030、2040、2050</dd><dt>插值节点</dt><dd class="num">2035、2045（线性）</dd><dt>空间映射</dt><dd>RegularGridInterpolator 映射到 0.01°</dd></dl>
+      </div>
+    </div>
+    <p class="note">图中数值为模型外包框内的简单空间均值，用于检查下载文件，不等同于五省行政区面积加权统计。单一年份受气候内部变率影响，不能简单理解为情景按排放强度单调排列。把 0.25° 插值到 0.01° 只是空间匹配，并不产生真实的 1 km 气候信息。</p>
+    <div class="fx wide"><span class="n num">P</span><div><b>气候压力（各情景以自身 2025 年为基线）</b><code>温度异常 = tas_年份 − tas_2025　　降水变化率 = (pr_年份 − pr_2025) / max(pr_2025, 50 mm)</code><code>气候压力 = clip(温度异常 / 3 − 降水变化率 / 0.50, −1, 1)</code><small>正值提高较重等级的相对适宜度，负值提高较轻等级的相对适宜度。</small></div></div>
+  </section>
+
+  <!-- 9 年度化 -->
+  <section class="panel reg sec" id="m9" data-anim>
+    <div class="sh"><span class="no num">09</span><div><h2>未来因子与年度化<em class="tag lE">年度化</em></h2><p>模型学的是五年一步的变化，不能每年重复运行，否则转移会被算上五遍。逐年产品由五年锚点拆分而来。</p></div></div>
+    <div class="cards c2">
+      <article class="src">
+        <header class="lE"><i class="num">N</i><b>未来 NDVI：封顶的线性外推</b><span class="in der">三情景相同</span></header>
+        <p><code>长期趋势 = clip((NDVI_2025 − NDVI_2015) / 10, −0.012, 0.012)</code></p>
+        <p><code>下一锚点 NDVI = clip(当前 NDVI + 5 × 长期趋势, −0.1, 0.95)</code></p>
+        <p class="note">三个情景用同一条 NDVI 趋势，没有单独的气候—植被响应模块，所以情景差异只来自气候压力。</p>
+      </article>
+      <article class="src">
+        <header class="lE"><i class="num">L</i><b>未来土地覆盖：固定为 2020 年</b><span class="in der">三情景相同</span></header>
+        <p>预测期不显式模拟城市扩张、耕地调整、退耕还林、光伏建设或防护林工程带来的土地覆盖变化。这些人类活动的影响只间接体现在历史转移规律中。</p>
+      </article>
+    </div>
+    <div class="annu">
+      <div class="annu-l">
+        <h3>五年锚点分五批展开</h3>
+        <ol>
+          <li>先算出 2030、2035、2040、2045、2050 五个完整锚点。</li>
+          <li>找出每个五年区间里起点和终点等级不同的格网。</li>
+          <li>按目标等级相对原等级的适宜度从高到低排序。</li>
+          <li>把待转移格网近似等分为五批。</li>
+          <li>适宜度最高的一批在第 1 年变化，其余依次在第 2—5 年变化。</li>
+        </ol>
+        <p class="fx-s"><code>alpha = 区间内步数 / 5　　P_年 = alpha × P_锚点</code></p>
+        <p class="fx-s"><code>P_年(起始等级) += 1 − alpha</code></p>
+      </div>
+      <div class="annu-r"><svg id="annu" aria-label="年度化示意"></svg>
+        <div class="ystat"><span class="h">历史锚点</span><span class="hi">历史插值</span><span class="f">预测锚点</span><span class="fi">预测年度化</span></div></div>
+    </div>
+  </section>
+
+  <!-- 10 不确定性 -->
+  <section class="panel reg sec" id="m10" data-anim>
+    <div class="sh"><span class="no num">10</span><div><h2>置信度与 90% 预测区间<em class="tag lE">不确定性</em></h2><p>每个格网每一年都有一个置信度和一个等级区间，地图上的“置信度”图层和时间轴阴影即来自这里。</p></div></div>
+    <div class="cards c2">
+      <article class="src">
+        <header class="lE"><i class="num">C</i><b>像元置信度</b><span class="in der">0—1</span></header>
+        <p><code>置信度 = P_年(最终 CA 分配等级)</code></p>
+        <p>表示模型概率对最终分配等级的相对支持，不是现实中“预测正确的概率”。历史代理锚点的置信度设为 1.0，只表示代理输入完整，不代表官方调查准确率为 100%。</p>
+        <p class="note">2030 年预测锚点：平均 85.5%，中位数 97.3%；2000—2050 逐年平均置信度在 84.9%—100% 之间。</p>
+      </article>
+      <article class="src">
+        <header class="lE"><i class="num">I</i><b>90% 等级区间与包络修正</b><span class="in der">下限 ≤ 点预测 ≤ 上限</span></header>
+        <p>先按五个有序类别的累计概率取 5% 与 95% 分位等级。CA-Markov 的全局数量约束有时会选中并非单格网最大概率的类别，因此最终区间取包络：</p>
+        <p><code>下限 = min(中央 90% 下限, 点预测)　上限 = max(中央 90% 上限, 点预测)</code></p>
+        <div class="envb" id="envb"></div>
+        <p class="note">条形为受影响的“格网 × 年份”比例。原始中央区间保存在各目录的 <code>raw_central_interval_backup/</code>。</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- 11 结果 -->
+  <section class="panel reg sec" id="m11" data-anim>
+    <div class="sh"><span class="no num">11</span><div><h2>三情景结果概览<em class="tag lE">输出</em></h2><p>未经 2019 年官方面积校准的格网汇总，适合比较情景之间的相对差别，不应直接当作官方荒漠化面积。</p></div></div>
+    <table class="tbl rtab">
+      <thead><tr><th>年份</th><th>情景</th><th class="r">土地风险指数</th><th class="r">荒漠化代理面积</th><th class="r">重度及以上面积</th><th class="r">平均置信度</th></tr></thead>
+      <tbody>
+        <tr class="g"><td rowspan="3" class="num">2030</td><td><i style="background:#2E8B57"></i>SSP1-2.6</td><td class="r num">0.55549</td><td class="r num">2,137,357.77 km²</td><td class="r num">1,602,269.77 km²</td><td class="r num">85.56%</td></tr>
+        <tr><td><i style="background:#1B252B"></i>SSP2-4.5</td><td class="r num">0.55555</td><td class="r num">2,137,529.62 km²</td><td class="r num">1,602,423.56 km²</td><td class="r num">85.52%</td></tr>
+        <tr><td><i style="background:#C8102E"></i>SSP5-8.5</td><td class="r num">0.55548</td><td class="r num">2,137,345.56 km²</td><td class="r num">1,602,226.05 km²</td><td class="r num">85.57%</td></tr>
+        <tr class="g"><td rowspan="3" class="num">2040</td><td><i style="background:#2E8B57"></i>SSP1-2.6</td><td class="r num">0.54428</td><td class="r num">2,099,823.88 km²</td><td class="r num">1,565,559.53 km²</td><td class="r num">84.92%</td></tr>
+        <tr><td><i style="background:#1B252B"></i>SSP2-4.5</td><td class="r num">0.54426</td><td class="r num">2,099,907.84 km²</td><td class="r num">1,565,324.53 km²</td><td class="r num">84.88%</td></tr>
+        <tr><td><i style="background:#C8102E"></i>SSP5-8.5</td><td class="r num">0.54427</td><td class="r num">2,099,861.45 km²</td><td class="r num">1,565,499.56 km²</td><td class="r num">84.89%</td></tr>
+        <tr class="g"><td rowspan="3" class="num">2050</td><td><i style="background:#2E8B57"></i>SSP1-2.6</td><td class="r num">0.53338</td><td class="r num">2,064,425.08 km²</td><td class="r num">1,530,177.30 km²</td><td class="r num">85.07%</td></tr>
+        <tr><td><i style="background:#1B252B"></i>SSP2-4.5</td><td class="r num">0.53345</td><td class="r num">2,064,627.69 km²</td><td class="r num">1,530,424.85 km²</td><td class="r num">85.03%</td></tr>
+        <tr><td><i style="background:#C8102E"></i>SSP5-8.5</td><td class="r num">0.53335</td><td class="r num">2,064,257.70 km²</td><td class="r num">1,530,146.85 km²</td><td class="r num">85.04%</td></tr>
+      </tbody>
+    </table>
+    <div class="why">
+      <div class="why-l">
+        <h3>总量几乎相同，位置不同</h3>
+        <p>Markov 矩阵固定了每个起始等级在五年里要转出多少格网，气候压力主要改变的是<b>哪些格网先转</b>。所以三个情景的全区类别总量很接近；面积上那一点差别，来自不同纬度格网的面积不同。情景的影响落在空间位置上，而不是五省总面积的分离。</p>
+        <a class="btn-o" href="index.html#y=2050&amp;sc=ssp585"><svg viewBox="0 0 24 24"><path d="M3 6l6-2 6 2 6-2v14l-6 2-6-2-6 2z"/><path d="M9 4v14M15 6v14"/></svg>在首页地图上查看 2050 年情景差异</a>
+        <p class="note">打开后在图层中选择“情景差异”，即可看到与 SSP2-4.5 等级不同的格网。</p>
+      </div>
+      <div class="why-r">
+        <h3>2050 年两两差异格网<small>占研究区</small></h3>
+        <div class="pairs" id="pairs"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 12 风险指数 -->
+  <section class="panel reg sec" id="m12" data-anim>
+    <div class="sh"><span class="no num">12</span><div><h2>风险指数与面积校准</h2><p>空间预测之后的统计层，不参与 LightGBM 训练。</p></div></div>
+    <div class="fxs">
+      <div class="fx"><span class="n num">L</span><div><b>土地风险指数</b><code>土地风险 = 按像元实际面积加权平均(等级 / 4)</code></div></div>
+      <div class="fx"><span class="n num">R</span><div><b>综合风险指数（2025 年起）</b><code>降水亏缺风险 = clip(−相对 2025 年降水异常% / 20, 0, 1)　增温风险 = clip(相对 2025 年气温异常 / 3, 0, 1)</code><code>综合风险 = clip(0.65 × 土地风险 + 0.20 × 降水亏缺风险 + 0.15 × 增温风险, 0, 1)</code></div></div>
+      <div class="fx"><span class="n num">A</span><div><b>面积口径与校准</b><code>等级 ≥ 1 计入荒漠化代理面积；等级 ≥ 3 计入重度及以上面积</code><code>校准因子 = 2019 年官方面积 / 2019 年模型面积（同一省份各年份共用）</code></div></div>
+    </div>
+    <p class="note">网站中县区、市州的三情景数值，均由 SSP1-2.6、SSP5-8.5 的新栅格重新汇总得到，没有使用模型工程中旧版的参数化县区情景表；官方口径面积与气候距平在 SSP2-4.5 表的基础上叠加情景差值。详见 <a class="lk" href="data.html#s6">数据来源 · 三种情景</a>。</p>
+  </section>
+
+  <!-- 13 验证与环境 -->
+  <section class="panel reg sec" id="m13" data-anim>
+    <div class="sh"><span class="no num">13</span><div><h2>完整性验证与运行环境</h2><p>三情景验证报告的最终状态为 <b class="pass">passed</b>。</p></div></div>
+    <div class="m13">
+      <div>
+        <h3 class="hsub">完整性检查</h3>
+        <ul class="checks">
+          <li><b>SSP1-2.6 栅格 · 地图</b><span class="num">100/100 · 25/25</span></li>
+          <li><b>SSP5-8.5 栅格 · 地图</b><span class="num">100/100 · 25/25</span></li>
+          <li><b>每年有效格网</b><span class="num">3,140,227</span></li>
+          <li><b>研究区内部 NoData</b><span class="num">0</span></li>
+          <li><b>置信度有限值</b><span>通过</span></li>
+          <li><b>下限 ≤ 点预测 ≤ 上限</b><span>通过</span></li>
+          <li><b>GeoTIFF 情景标签</b><span>通过</span></li>
+          <li><b>三情景逐年空间差异</b><span>通过</span></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="hsub">运行环境</h3>
+        <dl class="env">
+          <dt>系统</dt><dd>Windows 11 · 24 逻辑 CPU · 31.36 GiB 内存</dd>
+          <dt>GPU</dt><dd>RTX 5070 Laptop 8151 MiB（未参与训练）</dd>
+          <dt>Python</dt><dd class="num">3.14.7</dd>
+          <dt>LightGBM</dt><dd class="num">4.7.0</dd>
+          <dt>scikit-learn</dt><dd class="num">1.9.1</dd>
+          <dt>NumPy · pandas</dt><dd class="num">2.5.3 · 3.0.6</dd>
+          <dt>rasterio · GeoPandas</dt><dd class="num">1.5.2 · 1.2.0</dd>
+          <dt>netCDF4</dt><dd class="num">1.7.4</dd>
+        </dl>
+        <p class="note">训练与推理均为 CPU LightGBM（<code>n_jobs=−1</code>）；记录到的约 231—276 MiB 显存占用主要是系统与显示基线。</p>
+      </div>
+      <div>
+        <h3 class="hsub">性能记录</h3>
+        <div class="perf" id="perf"></div>
+        <dl class="env sm">
+          <dt>单次 314 万格概率推理</dt><dd class="num">约 33—65 秒</dd>
+          <dt>新增情景峰值内存</dt><dd class="num">1.52—1.57 GiB / 进程</dd>
+          <dt>GeoTIFF</dt><dd>DEFLATE · 512×512 瓦片 · 每批 250,000 格</dd>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <!-- 14 限制 -->
+  <section class="panel reg sec caveat" id="m14" data-anim>
+    <div class="sh"><span class="no num">14</span><div><h2>主要假设与限制</h2><p>读模型结果时应当记住的十四件事。</p></div></div>
+    <ol class="cv">
+      <li><b>代理标签</b><span>历史等级由土地覆盖和 NDVI 规则生成，不是官方调查真值。</span></li>
+      <li><b>天然裸地偏向</b><span>天然裸地和 NDVI 极低的地区容易被划为重度或极重度。</span></li>
+      <li><b>单一气候模式</b><span>三个情景都用 IITM-ESM，不是多模式集合。</span></li>
+      <li><b>气候插值</b><span>0.25° 插值到 0.01° 不增加真实的气候分辨率。</span></li>
+      <li><b>土地覆盖固定</b><span>未来土地覆盖固定为 2020 年状态。</span></li>
+      <li><b>NDVI 线性外推</b><span>不表达突发干旱、火灾和重大生态工程。</span></li>
+      <li><b>共享植被路径</b><span>三个情景没有各自的气候—植被响应。</span></li>
+      <li><b>Markov 数量约束</b><span>情景主要改变转移位置，全区总量对情景不敏感。</span></li>
+      <li><b>转移稳定性</b><span>假设历史转移结构能延续到未来。</span></li>
+      <li><b>人类活动</b><span>未直接模拟地下水开采、放牧、耕地扩张、生态补水和政策冲击。</span></li>
+      <li><b>空间自相关</b><span>数百万个像元并不是相互独立的观测。</span></li>
+      <li><b>验证范围</b><span>目前只有一次 2020→2025 时序留出，尚缺滚动时间、留省和官方样点验证。</span></li>
+      <li><b>概率未外部校准</b><span>置信度不能直接解释为现实中的正确率。</span></li>
+      <li><b>县区情景表</b><span>模型工程中的旧版县区多情景表仍为参数化版本，网站未使用，县区值已按新栅格重算。</span></li>
+    </ol>
+  </section>
+
+  <!-- 15 文件 -->
+  <section class="panel reg sec" id="m15" data-anim>
+    <div class="sh"><span class="no num">15</span><div><h2>实现与审计文件</h2><p>以下路径均相对于模型工程 <code>desertification_model_v1/</code>，可据此复现或核查网站上的任何一个数。</p></div></div>
+    <div class="prov two">
+      <div>
+        <h3>脚本</h3>
+        <ul>
+          <li><code>scripts/prepare_remote_data.py</code><span>遥感读取、土地覆盖归并、五级代理标签</span></li>
+          <li><code>scripts/train_1km_full.py</code><span>1 km 训练矩阵、时序验证、最终 LightGBM</span></li>
+          <li><code>scripts/benchmark_1km.py</code><span>邻域、概率推理、CA-Markov 融合、栅格输出</span></li>
+          <li><code>scripts/download_cmip6.py</code><span>三情景气候数据下载与年度聚合</span></li>
+          <li><code>scripts/forecast_scenario_annual_1km.py</code><span>SSP1-2.6、SSP5-8.5 逐年推演</span></li>
+          <li><code>scripts/forecast_2031_2040_annual.py</code><span>五年锚点与年度化方法</span></li>
+          <li><code>scripts/build_annual_2000_2050.py</code><span>既有完整年度产品</span></li>
+          <li><code>scripts/repair_interval_envelopes.py</code><span>90% 区间包络修正与备份</span></li>
+          <li><code>scripts/compare_scenario_outputs.py</code><span>三情景完整性验证与差异统计</span></li>
+        </ul>
+      </div>
+      <div>
+        <h3>报告与数据</h3>
+        <ul>
+          <li><code>outputs/model_1km_full/training_report.json</code><span>训练与资源报告</span></li>
+          <li><code>outputs/model_1km_full/temporal_validation_metrics.json</code><span>时序验证指标</span></li>
+          <li><code>outputs/model_comparison_1km/</code><span>六种做法对比、五级混淆矩阵、逐类别指标</span></li>
+          <li><code>outputs/model_1km_full/feature_importance_1km.csv</code><span>特征重要性</span></li>
+          <li><code>…/scenarios/ssp126_annual_2000_2050/run_report.json</code><span>SSP1-2.6 运行报告</span></li>
+          <li><code>…/scenarios/ssp585_annual_2000_2050/run_report.json</code><span>SSP5-8.5 运行报告</span></li>
+          <li><code>…/comparison_2026_2050/validation_report.json</code><span>最终验证报告</span></li>
+          <li><code>…/comparison_2026_2050/multi_scenario_annual_summary.csv</code><span>三情景逐年汇总</span></li>
+          <li><code>…/comparison_2026_2050/multi_scenario_pairwise_difference.csv</code><span>情景两两空间差异</span></li>
+          <li><code>…/scenarios/interval_envelope_repair_report.json</code><span>区间包络修正审计</span></li>
+        </ul>
+      </div>
+    </div>
+    <p class="note">模型的使用限制与免责声明，统一见 <a class="lk" href="data.html#s11">数据来源 · 署名、许可与免责</a>。</p>
+  </section>
+  </div>
+
+  <aside class="toc" data-anim aria-label="本页目录">
+    <div class="panel reg">
+      <h3>本页目录</h3>
+      <ol id="toc">
+        <li><a href="#m1"><span class="num">01</span>模型概况</a></li>
+        <li><a href="#m2"><span class="num">02</span>总体路径</a></li>
+        <li><a href="#m3"><span class="num">03</span>空间与时间配置</a></li>
+        <li><a href="#m4"><span class="num">04</span>历史输入与代理标签</a></li>
+        <li><a href="#m5"><span class="num">05</span>LightGBM 转移模型</a></li>
+        <li><a href="#m6"><span class="num">06</span>Markov 转移矩阵</a></li>
+        <li><a href="#m7"><span class="num">07</span>CA-Markov 空间分配</a></li>
+        <li><a href="#m8"><span class="num">08</span>三套气候情景</a></li>
+        <li><a href="#m9"><span class="num">09</span>未来因子与年度化</a></li>
+        <li><a href="#m10"><span class="num">10</span>置信度与 90% 区间</a></li>
+        <li><a href="#m11"><span class="num">11</span>三情景结果概览</a></li>
+        <li><a href="#m12"><span class="num">12</span>风险指数与面积校准</a></li>
+        <li><a href="#m13"><span class="num">13</span>验证与运行环境</a></li>
+        <li><a href="#m14"><span class="num">14</span>主要假设与限制</a></li>
+        <li><a href="#m15"><span class="num">15</span>实现与审计文件</a></li>
+      </ol>
+      <div class="toc-ft md-ft">
+        <div><i style="--lc:#1A3441"></i>输入 · 驱动</div><div><i style="--lc:#C4702F"></i>模型计算</div>
+      </div>
+    </div>
+  </aside>
+  </div>
+</main>
+
+
+<script src="assets/js/nav.js?v=20261010c"></script>
+<script src="assets/data/validation.js?v=20261010g"></script>
+<script src="assets/js/model.js?v=20261010g"></script>
+</body>
+</html>

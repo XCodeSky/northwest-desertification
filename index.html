@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>西北荒漠化灾害预测及防护平台</title>
+<meta name="description" content="中国西北五省区 2000–2050 年 1 km 荒漠化等级：遥感代理观测与 SSP1-2.6、SSP2-4.5、SSP5-8.5 三情景逐年预测。">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<style>html{background:#E6E8E4}</style>
+<script>(function(){var h=document.documentElement;h.classList.add('pre');try{if(sessionStorage.getItem('nw-nav'))h.classList.add('internal')}catch(e){}setTimeout(function(){h.classList.remove('pre')},3000)})();</script>
+<link rel="stylesheet" href="assets/css/site.css?v=20261010g">
+</head>
+<body>
+
+<nav class="side" aria-label="主导航">
+  <div class="brand">
+    <div class="mark" aria-hidden="true">
+      <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="#1A3441" stroke-width="2.4" stroke-linecap="square"><path d="M2 9c4-3 7-3 11 0s7 3 13 0"/><path d="M2 15c4-3 7-3 11 0s7 3 13 0"/><path d="M2 21c4-3 7-3 11 0s7 3 13 0"/></svg>
+    </div>
+    <div><b>西北荒漠化</b><small>灾害预测及防护平台</small></div>
+  </div>
+  <ul class="nav-list">
+    <li><a href="index.html" class="on" aria-current="page"><svg viewBox="0 0 24 24"><path d="M3 11l9-7 9 7v9H3z"/><path d="M9 20v-6h6v6"/></svg>首页</a></li>
+    <li><a href="region.html"><svg viewBox="0 0 24 24"><path d="M3 6l6-2 6 2 6-2v14l-6 2-6-2-6 2z"/><path d="M9 4v14M15 6v14"/></svg>地区预测</a>
+      <ul class="nav-sub"><li><a href="region.html#s=measures" data-sub="measures"><svg viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 4.5-3.4 8-8 9-4.6-1-8-4.5-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg>防护措施</a></li></ul></li>
+    <li><a href="data.html"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="5.5" rx="8" ry="2.5"/><path d="M4 5.5v13c0 1.4 3.6 2.5 8 2.5s8-1.1 8-2.5v-13"/><path d="M4 12c0 1.4 3.6 2.5 8 2.5s8-1.1 8-2.5"/></svg>数据来源</a>
+      <ul class="nav-sub">
+        <li><a href="data.html#s1" data-sub="ds-s1"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="7" height="7"/><rect x="13" y="4" width="7" height="7"/><rect x="4" y="13" width="7" height="7"/><rect x="13" y="13" width="7" height="7"/></svg>概览</a></li>
+        <li><a href="data.html#s5" data-sub="ds-s5"><svg viewBox="0 0 24 24"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9z"/><path d="M4 7.5l8 4.5 8-4.5M12 12v9"/></svg>模型</a></li>
+        <li><a href="data.html#s11" data-sub="ds-s11"><svg viewBox="0 0 24 24"><path d="M14 4l6 6-10 10H4v-6z"/><path d="M12 6l6 6"/></svg>署名和免责</a></li>
+      </ul></li>
+  </ul>
+  <div class="nav-sep"></div>
+  <ul class="nav-list">
+    <li><a href="history.html"><svg viewBox="0 0 24 24"><path d="M4 4.5A2.5 2.5 0 0 1 6.5 2H20v18H6.5A2.5 2.5 0 0 0 4 22z"/><path d="M4 17.5h16"/><path d="M8 6h8M8 9.5h5"/></svg>历史记录</a>
+      <ul class="nav-sub">
+        <li><a href="history.html" data-sub="hs-road"><svg viewBox="0 0 24 24"><path d="M8 21L10.5 3M16 21L13.5 3"/><path d="M12 6v2.5M12 11v2.5M12 16v2.5"/></svg>沙海长路</a></li>
+        <li><a href="heroes.html" data-sub="hs-people"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.4"/><path d="M4.5 20.5c0-3.6 3.3-6 7.5-6s7.5 2.4 7.5 6"/></svg>漠上群英</a></li>
+      </ul></li>
+    <li><a href="model.html"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><path d="M17.5 14v7M14 17.5h7"/></svg>模型说明</a></li>
+    <li><a href="about.html"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.3"/></svg>关于项目</a></li>
+  </ul>
+  <div class="nav-foot">
+    <div class="status">
+      <div><span class="dot"></span>完整版 1 km 模型</div>
+      <div>年份 <b>2000–2050</b>（逐年）</div>
+      <div>网格 <b>0.01°</b>（名义约 1 km）</div>
+    </div>
+    <a class="btn-dl" href="assets/downloads/desertification_1km_2000_2050_anchors.zip" download>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12M7 10l5 5 5-5M4 20h16"/></svg>
+      下载锚点年份栅格
+    </a>
+  </div>
+</nav>
+
+<main>
+  <header class="top" data-anim>
+    <div>
+      <h1>西北五省区荒漠化等级预测</h1>
+      <p>1 km 逐年序列：2000–2025 年为遥感代理观测（每 5 年锚点，其余年份插值），2026–2050 年为 SSP1-2.6、SSP2-4.5、SSP5-8.5 三种气候情景下的逐年预测。拖动时间轴查看任一年，切换情景，或开启双时相对比。</p>
+    </div>
+    <div class="top-tools">
+      <label class="field" style="width:160px">
+        <svg viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
+        <span class="sr">选择区域</span>
+        <select id="scopeSel"><option value="-1">全部区域</option></select>
+        <svg class="chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+      </label>
+      <label class="field" style="width:260px">
+        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>
+        <span class="sr">搜索县区</span>
+        <input id="search" list="countyList" placeholder="搜索县、区、市" autocomplete="off">
+        <datalist id="countyList"></datalist>
+      </label>
+    </div>
+  </header>
+
+  <section class="panel map-panel reg" data-anim aria-label="荒漠化等级地图">
+    <div class="map-head">
+      <h2>预测结果</h2>
+      <div class="seg" role="group" aria-label="图层">
+        <button data-layer="level" class="on">荒漠化等级</button><button data-layer="change">年际变化</button><button data-layer="conf">置信度</button><button data-layer="sdiff">情景差异</button>
+      </div>
+      <span class="lbl">气候情景</span>
+      <div class="seg num" role="group" aria-label="气候情景">
+        <button data-scn="ssp126" title="低排放路径：2026–2050 年 1 km 逐年预测">SSP1-2.6</button><button data-scn="ssp245" class="on" title="中等排放路径：2026–2050 年 1 km 逐年预测">SSP2-4.5</button><button data-scn="ssp585" title="高排放路径：2026–2050 年 1 km 逐年预测">SSP5-8.5</button>
+      </div>
+      <button class="cmp" id="cmpBtn" aria-pressed="false"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="8" height="14"/><rect x="13" y="5" width="8" height="14"/><path d="M12 2v20"/></svg>双时相对比</button>
+      <div class="head-right">
+        <span class="meta">0.01°（名义约 1 km）</span>
+        <button class="tb" id="zoomIn" title="放大"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></button>
+        <button class="tb" id="zoomOut" title="缩小"><svg viewBox="0 0 24 24"><path d="M5 12h14"/></svg></button>
+        <button class="tb" id="zoomReset" title="复位"><svg viewBox="0 0 24 24"><path d="M4 12a8 8 0 1 0 2.4-5.7M4 4v4.5h4.5"/></svg></button>
+        <button class="tb" id="savePng" title="导出当前地图 PNG"><svg viewBox="0 0 24 24"><path d="M12 4v11M7.5 10.5L12 15l4.5-4.5M5 20h14"/></svg></button>
+      </div>
+    </div>
+    <div class="map-wrap" id="mapwrap">
+      <div class="overview" id="overview"></div>
+      <div class="inset"><div class="t">研究区位置</div><svg id="inset"></svg><div class="nh" title="南海诸岛示意"><svg id="scs"></svg><span>南海诸岛</span></div></div>
+      <div class="loading" id="loading" hidden><span></span>正在载入 <b id="loadingY"></b> 年数据</div>
+      <div class="divider" id="divider" hidden><div class="ln"></div><div class="hd" id="divHandle" role="slider" aria-label="卷帘位置" tabindex="0"><svg viewBox="0 0 16 16"><path d="M6 3L1 8l5 5zM10 3l5 5-5 5z"/></svg></div></div>
+      <div class="mchip a" id="chipA" hidden><i>A</i><b id="chipAy"></b><span id="chipAt"></span></div>
+      <div class="mchip b" id="chipB" hidden><i>B</i><b id="chipBy"></b><span id="chipBt"></span></div>
+      <div class="cmode" id="cmode" hidden><span>对比方式</span><button data-mode="swipe" class="on">卷帘对比</button><button data-mode="diff">变化图</button></div>
+      <div class="tip" id="tip" hidden></div>
+      <div class="ccard" id="ccard" hidden></div>
+      <div class="mapfoot">
+        <svg width="250" height="34" id="scale"></svg>
+      </div>
+    </div>
+    <div class="mapcredit" id="mapCredit"></div>
+  </section>
+
+  <section class="panel timeline reg" data-anim aria-label="时间轴">
+    <div class="yearblock">
+      <div class="yb yb1" id="yb1">
+        <span class="k">当前显示年份</span>
+        <span class="y" id="ybY">2025</span>
+        <div class="s"><span id="ybTag"></span><span id="ybSc"></span></div>
+      </div>
+      <div class="yb yb2" id="yb2" hidden>
+        <span class="k">对比年份</span>
+        <div class="row a"><i>A</i><span id="yb2a"></span></div>
+        <div class="row b"><i>B</i><span id="yb2b"></span></div>
+      </div>
+    </div>
+    <div class="ctrls">
+      <button class="play" id="playBtn" aria-label="播放"><svg viewBox="0 0 16 16"><path id="icPlay" d="M4 2l10 6-10 6z"/><g id="icPause" style="display:none"><rect x="3" y="2" width="3.6" height="12"/><rect x="9.4" y="2" width="3.6" height="12"/></g></svg></button>
+      <div class="step">
+        <button id="prevBtn" aria-label="上一年"><svg viewBox="0 0 10 10"><path d="M8 1L2 5l6 4z"/></svg></button>
+        <button id="nextBtn" aria-label="下一年"><svg viewBox="0 0 10 10"><path d="M2 1l6 4-6 4z"/></svg></button>
+      </div>
+    </div>
+    <div class="track-area" id="trackArea"><svg id="track" aria-hidden="true"></svg></div>
+    <div class="jump">
+      <div class="j1" id="j1">
+        <label for="yearIn">跳转至年份</label>
+        <div class="yin">
+          <input id="yearIn" inputmode="numeric" maxlength="4" value="2025" aria-describedby="hint">
+          <span class="unit">年</span>
+          <span class="spin"><button id="yUp" aria-label="后一年"><svg viewBox="0 0 10 10"><path d="M1 7l4-5 4 5z"/></svg></button><button id="yDn" aria-label="前一年"><svg viewBox="0 0 10 10"><path d="M1 3l4 5 4-5z"/></svg></button></span>
+        </div>
+        <div class="row">
+          <button class="go" id="goBtn">跳转</button>
+          <select id="speed" aria-label="播放速度"><option value="1">1×</option><option value="2">2×</option><option value="0.5">0.5×</option></select>
+        </div>
+        <div class="hint" id="hint"></div>
+      </div>
+      <div class="j2" id="j2" hidden>
+        <span class="lab">对比年份</span>
+        <div class="pr a"><i>A</i><select id="selA" aria-label="对比年份 A"></select><button class="swap" id="swapBtn" title="交换 A、B"><svg viewBox="0 0 24 24"><path d="M7 4v16M3 16l4 4 4-4M17 20V4M13 8l4-4 4 4"/></svg></button></div>
+        <div class="pr b"><i>B</i><select id="selB" aria-label="对比年份 B"></select><span style="width:24px"></span></div>
+        <button class="go" id="exitCmp">退出对比</button>
+      </div>
+    </div>
+  </section>
+
+  <aside class="panel legend reg" data-anim aria-label="图例">
+    <div class="lg-head"><h2>图例</h2><span id="lgTag"></span></div>
+    <div class="lg-scroll">
+      <div class="sec" id="lgMain"></div>
+      <div class="sec" id="lgScn"></div>
+      <div class="sec">
+        <h3>图层符号</h3>
+        <div class="sym">
+          <div><svg viewBox="0 0 28 16"><path d="M1 8h26" stroke="#1B252B" stroke-width="2"/></svg>省级界线</div>
+          <div><svg viewBox="0 0 28 16"><path d="M1 8h26" stroke="#24475A" stroke-width="1.2"/></svg>地市界线</div>
+          <div><svg viewBox="0 0 28 16"><rect width="28" height="16" fill="#E2AE52"/><path d="M1 8h26" stroke="#fff" stroke-width="1" opacity=".8"/></svg>县级界线</div>
+          <div><svg viewBox="0 0 28 16"><rect x="9" y="3" width="10" height="10" transform="rotate(45 14 8)" fill="#1B252B" stroke="#E3A229" stroke-width="2"/></svg>指数上升县区</div>
+          <div><svg viewBox="0 0 28 16"><rect x="9" y="3" width="10" height="10" transform="rotate(45 14 8)" fill="#1E7B4D" stroke="#fff" stroke-width="2"/></svg>指数下降县区</div>
+          <div><svg viewBox="0 0 28 16"><rect width="28" height="16" fill="#D9DCD6" stroke="#fff"/></svg>非研究区</div>
+        </div>
+      </div>
+      <div class="sec">
+        <h3>重点关注县区<small>2025→2050 风险指数变化</small></h3>
+        <ul class="hot" id="hot"></ul>
+      </div>
+    </div>
+    <div class="model" id="model"></div>
+  </aside>
+</main>
+
+<script src="assets/data/geo.js?v=20261010c"></script>
+<script src="assets/data/core.js?v=20261010e"></script>
+<script src="assets/data/calib.js?v=20261010c"></script>
+<script src="assets/data/scen.js?v=20261010e"></script>
+<script src="assets/js/nav.js?v=20261010c"></script>
+<script src="assets/data/scs.js?v=20261010d"></script>
+<script src="assets/js/config.js?v=20261010d"></script>
+<script src="assets/data/validation.js?v=20261010g"></script>
+<script src="assets/js/mapcore.js?v=20261010e"></script>
+<script src="assets/js/home.js?v=20261010g"></script>
+</body>
+</html>

@@ -1,0 +1,219 @@
+{
+  "schema_version": "1.0",
+  "generated_for": "西北荒漠化预测及防护平台",
+  "study_area": ["新疆维吾尔自治区", "甘肃省", "青海省", "宁夏回族自治区", "陕西省"],
+  "data_flow": [
+    "官方调查与公开统计校准",
+    "土地覆盖与植被遥感观测",
+    "CMIP6未来气候驱动",
+    "行政区边界与中文地名",
+    "1 km机器学习与CA-Markov推演",
+    "等级图、面积、风险指数、置信度、区间、归因与建议"
+  ],
+  "levels": {
+    "A": "官方调查与公开统计",
+    "B": "遥感与气候直接输入",
+    "C": "空间边界与地名",
+    "D": "政策、规划与治理案例",
+    "E": "模型派生数据"
+  },
+  "sources": [
+    {
+      "id": "B01",
+      "level": "B",
+      "name": "ESA CCI Annual Global Land Cover Maps",
+      "provider": "European Space Agency Climate Change Initiative",
+      "time_range": "1992-2020",
+      "native_resolution": "300 m, annual",
+      "project_usage": "土地覆盖特征、历史代理标签和荒漠化状态判别",
+      "project_processing": "通过Planetary Computer的esa-cci-lc集合获取，裁剪西北五省并聚合至约1 km格网；2025年沿用2020年土地覆盖状态",
+      "direct_model_input": true,
+      "limitations": "土地覆盖类别不等于荒漠化等级；产品止于2020年",
+      "urls": [
+        "https://climate.esa.int/en/projects/land-cover/data/",
+        "https://planetarycomputer.microsoft.com/catalog"
+      ]
+    },
+    {
+      "id": "B02",
+      "level": "B",
+      "name": "MODIS/Terra MOD13A1.061 Vegetation Indices",
+      "provider": "NASA LP DAAC / MODIS",
+      "time_range": "2000-present",
+      "native_resolution": "500 m, 16-day composite",
+      "project_usage": "NDVI植被状态、退化与恢复特征",
+      "project_processing": "通过Planetary Computer的modis-13A1-061集合获取；选择接近7月15日的合成影像，质量控制后重采样到约1 km",
+      "direct_model_input": true,
+      "limitations": "受云、积雪、异常值和物候影响；单期NDVI不能单独证明荒漠化",
+      "urls": [
+        "https://ladsweb.modaps.eosdis.nasa.gov/missions-and-measurements/products/MOD13A1",
+        "https://modis.gsfc.nasa.gov/data/dataprod/mod13.php"
+      ]
+    },
+    {
+      "id": "B03",
+      "level": "B",
+      "name": "NASA NEX-GDDP-CMIP6",
+      "provider": "NASA Center for Climate Simulation",
+      "time_range": "project nodes: 2025, 2030, 2040, 2050",
+      "native_resolution": "0.25 degree, daily",
+      "scenario": "SSP2-4.5",
+      "climate_model": "IITM-ESM",
+      "variables": ["pr", "tas"],
+      "project_usage": "未来降水与气温驱动、县区气候指标",
+      "project_processing": "逐日数据聚合成年特征，中间年份时间插值并映射至约1 km模型格网",
+      "direct_model_input": true,
+      "limitations": "1 km为模型输出格网而非气候原始分辨率；单一模式不能代表完整模式集合不确定性",
+      "urls": [
+        "https://www.nccs.nasa.gov/data-collections/nex-gddp-cmip6/",
+        "https://ntrs.nasa.gov/api/citations/20240011616/downloads/s41597-022-01393-4.pdf"
+      ]
+    },
+    {
+      "id": "A01",
+      "level": "A",
+      "name": "全国荒漠化和沙化调查/监测",
+      "provider": "国家林业和草原局",
+      "project_usage": "全国与省域面积量级校准、长期趋势核验",
+      "direct_model_input": false,
+      "limitations": "调查年份与统计口径不能直接扩展为逐年1 km官方真值",
+      "urls": [
+        "https://www.forestry.gov.cn/c/www/zxzb/250089.jhtml",
+        "https://www.forestry.gov.cn/c/www/lczy/38634.jhtml",
+        "https://www.forestry.gov.cn/main/65/20151229/835177.html"
+      ]
+    },
+    {
+      "id": "A02",
+      "level": "A",
+      "name": "2019年西北五省荒漠化面积公开锚点",
+      "provider": "国家林草局、地方林草部门及公开省情资料",
+      "project_usage": "年度荒漠化面积序列省级比例校准",
+      "direct_model_input": false,
+      "values_km2": {
+        "新疆维吾尔自治区": 1068662,
+        "甘肃省": 192393,
+        "青海省": 190358,
+        "宁夏回族自治区": 26400,
+        "陕西省": 26500
+      },
+      "limitations": "部分公开资料使用荒漠化、沙化或沙区等不同口径；宁夏值为公开资料的约数",
+      "urls": {
+        "新疆维吾尔自治区": "https://lcj.xinjiang.gov.cn/lcj/jgjs/202310/552864b770d9472b8974ab9ea0ed6008.shtml",
+        "甘肃省": "https://szb.gansudaily.com.cn/gsrb/pc/con/202306/16/c93125.html",
+        "青海省": "https://fdi.mofcom.gov.cn/resource/pdf/2020/10/21/51e8da30b76644aa9bc7ae9bee6df807.pdf",
+        "宁夏回族自治区": "https://www.forestry.gov.cn/c/www/lcdt/656446.jhtml",
+        "陕西省": "https://www.forestry.gov.cn/c/www/hm/507279.jhtml"
+      }
+    },
+    {
+      "id": "C01",
+      "level": "C",
+      "name": "geoBoundaries China ADM1 gbOpen",
+      "provider": "geoBoundaries",
+      "project_usage": "西北五省研究区外轮廓、裁剪和省级检查",
+      "license": "CC BY 4.0",
+      "direct_model_input": false,
+      "limitations": "使用时应保留署名并核对地图合规要求",
+      "urls": [
+        "https://www.geoboundaries.org/",
+        "https://www.geoboundaries.org/api.html"
+      ]
+    },
+    {
+      "id": "C02",
+      "level": "C",
+      "name": "DataV GeoAtlas行政区边界",
+      "provider": "阿里云DataV；文档称数据来源于高德地图",
+      "coverage": "西北五省省、市、县；项目当前约367个县级单元",
+      "project_usage": "县区GeoJSON、中文名、行政区代码映射、地图标注和区域统计",
+      "endpoint_template": "https://geo.datav.aliyun.com/areas_v3/bound/{code}_full.json",
+      "direct_model_input": false,
+      "limitations": "适合可视化和一般统计，不等同于主管部门审定的标准地图；公开发布前需复核地图合规性",
+      "urls": [
+        "https://help.aliyun.com/zh/datav/datav-6-0/user-guide/datav-geoatlas-widget/",
+        "https://help.aliyun.com/zh/datav/datav-6-0/user-guide/choropleth-layer-of-v3-x"
+      ]
+    }
+  ],
+  "derived_datasets": [
+    {
+      "id": "E01",
+      "name": "五级荒漠化代理标签",
+      "method": "土地覆盖、NDVI阈值和历史时序规则",
+      "disclaimer": "遥感代理标签，不等同于法定地面调查等级"
+    },
+    {
+      "id": "E02",
+      "name": "2000-2050年约1 km年度风险栅格",
+      "method": "LightGBM/随机森林 + 3×3邻域CA-Markov + SSP2-4.5气候压力修正",
+      "period_definition": "2000-2025为遥感反演/插值/校准；2026-2050为模型预测",
+      "disclaimer": "0.01度经纬度格网约等于1 km，但不是严格等面积格网"
+    },
+    {
+      "id": "E03",
+      "name": "荒漠化面积与综合风险指数",
+      "method": "像元实际面积汇总、2019省级锚点校准、等级权重归一化",
+      "disclaimer": "用于同一模型体系内相对比较，不是法定风险指数"
+    },
+    {
+      "id": "E04",
+      "name": "预测置信度与90%预测区间",
+      "method": "分类概率、历史外推距离、输入完整性、时序一致性和面积校准误差传播",
+      "disclaimer": "置信度不能解释为预测一定正确的概率"
+    },
+    {
+      "id": "E05",
+      "name": "NoData修复版栅格",
+      "method": "研究区内局部邻域多数/最近有效值填补，并进行跨期一致性检查",
+      "disclaimer": "仅用于连续制图和统计；原始NoData栅格另行保留"
+    },
+    {
+      "id": "E06",
+      "name": "县区地下水位变化与大风日数",
+      "method": "根据干旱度、气候压力、灌溉压力和地区基线构造",
+      "disclaimer": "当前为模型代理，不是监测井或气象站实测"
+    },
+    {
+      "id": "E07",
+      "name": "风险驱动因子归因",
+      "method": "规则化/模型化贡献率估计",
+      "disclaimer": "用于解释模型结果，不是严格因果效应识别"
+    },
+    {
+      "id": "E08",
+      "name": "SSP1-2.6和SSP5-8.5对比线",
+      "method": "基于SSP2-4.5结果和情景系数构造",
+      "disclaimer": "参数化情景对比，不是独立下载和训练的完整CMIP6结果"
+    }
+  ],
+  "policy_sources": [
+    {"id":"D01","name":"中华人民共和国防沙治沙法","url":"https://www.mee.gov.cn/ywgz/fgbz/fl/201811/t20181114_673626.shtml"},
+    {"id":"D02","name":"退耕还林条例","url":"https://www.forestry.gov.cn/c/www/gkbmgz/300049.jhtml"},
+    {"id":"D03","name":"三北工程总体规划","url":"https://www.forestry.gov.cn/c/sbj/gcgh/355834.jhtml"},
+    {"id":"D04","name":"国务院办公厅关于进一步推进三北防护林体系建设的意见","url":"https://www.forestry.gov.cn/c/www/gwywj/39912.jhtml"},
+    {"id":"D05","name":"国务院关于促进牧区又好又快发展的若干意见","url":"https://www.mee.gov.cn/zcwj/gwywj/201811/t20181129_676513.shtml"},
+    {"id":"D06","name":"三北五期百万亩防护林基地管理办法","url":"https://www.forestry.gov.cn/lyj/1/gkzfwj/20161019/300333.html"},
+    {"id":"D07","name":"新一轮草原生态保护补助奖励政策","url":"https://jcs.moa.gov.cn/trzgl/201603/t20160304_5040527.htm"},
+    {"id":"D08","name":"关于加强我国荒漠化防治的提案复文","url":"https://www.forestry.gov.cn/c/www/gktafw/96836.jhtml"},
+    {"id":"D09","name":"全国防沙治沙规划（2021—2030年）","url":"https://www.forestry.gov.cn/c/www/gkzfwj/521549.jhtml"},
+    {"id":"D10","name":"北方防沙带生态保护和修复重大工程建设规划（2021—2035年）","url":"https://www.gov.cn/zhengce/zhengceku/2022-01/14/5668161/files/bc524050c51743ebac672ae348057c8a.pdf"},
+    {"id":"D11","name":"新疆塔克拉玛干沙漠边缘阻击战九条措施","url":"https://lcj.xinjiang.gov.cn/lcj/mtbd/202406/3aeab68af6044a0d83b99e743ed4869d.shtml"},
+    {"id":"D12","name":"甘肃省科学绿化实施意见","url":"https://zwfw.gansu.gov.cn/maiji/sbqd/mtbd/art/2022/art_bcf35807d48a447abc1c5837a2227a37.html"},
+    {"id":"D13","name":"青海省十四五生态保护修复任务","url":"https://hdgyy.qinghai.gov.cn/cms/zfxxgk/show.html?id=228"},
+    {"id":"D14","name":"宁夏环境保护十三五规划","url":"https://sthjt.nx.gov.cn/zwgk/hjgh/zxgh/201704/t20170429_3631212.html"},
+    {"id":"D15","name":"陕西省风沙区水土流失综合治理技术规范","url":"https://slt.shaanxi.gov.cn/bmcs/sxstbc/zcfg_2038/202305/P020230505282933287023.pdf"},
+    {"id":"D16","name":"新疆沙雅县生态保护修复与沙漠锁边实践","url":"https://lcj.xinjiang.gov.cn/lcj/mtbd/202502/bbd5108ce689417da8ddf64b9beca775.shtml"},
+    {"id":"D17","name":"新疆塔克拉玛干沙漠边缘阻击战阶段实践","url":"https://lcj.xinjiang.gov.cn/lcj/c114635/202403/fecacb8519474b9d86f54884fa455ab6.shtml"},
+    {"id":"D18","name":"甘肃河西走廊、民勤与八步沙治理资料","url":"https://zwfw.gansu.gov.cn/maiji/sbqd/gg/art/2024/art_4b63d07033f542618ccadc67b31bfa6a.html"},
+    {"id":"D19","name":"陕西榆林防沙治沙历史做法","url":"https://lyj.shaanxi.gov.cn/zwxx/mtbd/202306/t20230625_2291203.html"}
+  ],
+  "local_provenance_files": [
+    "data/processed/remote_data_summary.json",
+    "data/processed/cmip6_manifest.json",
+    "data/raw/boundaries/*.metadata.json",
+    "outputs/"
+  ],
+  "website_short_attribution": "数据：ESA CCI Land Cover、NASA MODIS MOD13A1、NASA NEX-GDDP-CMIP6、国家林草局公开调查资料、geoBoundaries、阿里云DataV GeoAtlas；模型与制图：西北荒漠化预测项目。历史连续序列和未来值为模型结果，仅供科研、教学与决策辅助。",
+  "disclaimer": "本平台不替代国家法定荒漠化调查、标准地图、气象实况或地下水监测。用于工程选址、行政考核或资金配置前，应结合最新地面调查和主管部门资料复核。"
+}

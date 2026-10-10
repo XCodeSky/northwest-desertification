@@ -1,0 +1,436 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>数据来源 · 西北荒漠化灾害预测及防护平台</title>
+<meta name="description" content="西北荒漠化平台的数据来源、分层口径、官方校准锚点、模型派生数据与免责声明。">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<style>html{background:#E6E8E4}</style>
+<script>(function(){var h=document.documentElement;h.classList.add('pre');try{if(sessionStorage.getItem('nw-nav'))h.classList.add('internal')}catch(e){}setTimeout(function(){h.classList.remove('pre')},3000)})();</script>
+<link rel="stylesheet" href="assets/css/site.css?v=20261010d">
+<link rel="stylesheet" href="assets/css/data.css?v=20261010c">
+</head>
+<body>
+
+<nav class="side" aria-label="主导航">
+  <div class="brand">
+    <div class="mark" aria-hidden="true">
+      <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="#1A3441" stroke-width="2.4" stroke-linecap="square"><path d="M2 9c4-3 7-3 11 0s7 3 13 0"/><path d="M2 15c4-3 7-3 11 0s7 3 13 0"/><path d="M2 21c4-3 7-3 11 0s7 3 13 0"/></svg>
+    </div>
+    <div><b>西北荒漠化</b><small>灾害预测及防护平台</small></div>
+  </div>
+  <ul class="nav-list">
+    <li><a href="index.html"><svg viewBox="0 0 24 24"><path d="M3 11l9-7 9 7v9H3z"/><path d="M9 20v-6h6v6"/></svg>首页</a></li>
+    <li><a href="region.html"><svg viewBox="0 0 24 24"><path d="M3 6l6-2 6 2 6-2v14l-6 2-6-2-6 2z"/><path d="M9 4v14M15 6v14"/></svg>地区预测</a>
+      <ul class="nav-sub"><li><a href="region.html#s=measures" data-sub="measures"><svg viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 4.5-3.4 8-8 9-4.6-1-8-4.5-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg>防护措施</a></li></ul></li>
+    <li><a href="data.html" class="on" aria-current="page"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="5.5" rx="8" ry="2.5"/><path d="M4 5.5v13c0 1.4 3.6 2.5 8 2.5s8-1.1 8-2.5v-13"/><path d="M4 12c0 1.4 3.6 2.5 8 2.5s8-1.1 8-2.5"/></svg>数据来源</a>
+      <ul class="nav-sub">
+        <li><a href="data.html#s1" data-sub="ds-s1"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="7" height="7"/><rect x="13" y="4" width="7" height="7"/><rect x="4" y="13" width="7" height="7"/><rect x="13" y="13" width="7" height="7"/></svg>概览</a></li>
+        <li><a href="data.html#s5" data-sub="ds-s5"><svg viewBox="0 0 24 24"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9z"/><path d="M4 7.5l8 4.5 8-4.5M12 12v9"/></svg>模型</a></li>
+        <li><a href="data.html#s11" data-sub="ds-s11"><svg viewBox="0 0 24 24"><path d="M14 4l6 6-10 10H4v-6z"/><path d="M12 6l6 6"/></svg>署名和免责</a></li>
+      </ul></li>
+  </ul>
+  <div class="nav-sep"></div>
+  <ul class="nav-list">
+    <li><a href="history.html"><svg viewBox="0 0 24 24"><path d="M4 4.5A2.5 2.5 0 0 1 6.5 2H20v18H6.5A2.5 2.5 0 0 0 4 22z"/><path d="M4 17.5h16"/><path d="M8 6h8M8 9.5h5"/></svg>历史记录</a>
+      <ul class="nav-sub">
+        <li><a href="history.html" data-sub="hs-road"><svg viewBox="0 0 24 24"><path d="M8 21L10.5 3M16 21L13.5 3"/><path d="M12 6v2.5M12 11v2.5M12 16v2.5"/></svg>沙海长路</a></li>
+        <li><a href="heroes.html" data-sub="hs-people"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.4"/><path d="M4.5 20.5c0-3.6 3.3-6 7.5-6s7.5 2.4 7.5 6"/></svg>漠上群英</a></li>
+      </ul></li>
+    <li><a href="model.html"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><path d="M17.5 14v7M14 17.5h7"/></svg>模型说明</a></li>
+    <li><a href="about.html"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.3"/></svg>关于项目</a></li>
+  </ul>
+  <div class="nav-foot">
+    <div class="status">
+      <div><span class="dot"></span>完整版 1 km 模型</div>
+      <div>年份 <b>2000–2050</b>（逐年）</div>
+      <div>网格 <b>0.01°</b>（名义约 1 km）</div>
+    </div>
+    <a class="btn-dl" href="assets/downloads/desertification_1km_2000_2050_anchors.zip" download>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12M7 10l5 5 5-5M4 20h16"/></svg>
+      下载锚点年份栅格
+    </a>
+  </div>
+</nav>
+
+<main class="ds">
+  <header class="top ds-head" data-anim>
+    <div class="ttl">
+      <div class="crumb"><a href="index.html">西北五省区</a><i>/</i><b>数据来源</b></div>
+      <h1>数据来源与口径</h1>
+    </div>
+    <div class="top-tools">
+      <a class="btn-o" href="assets/downloads/website_data_sources.md" download><svg viewBox="0 0 24 24"><path d="M12 4v11M7.5 10.5L12 15l4.5-4.5M5 20h14"/></svg>说明文档 .md</a>
+      <a class="btn-d" href="assets/downloads/data_sources.json" download><svg viewBox="0 0 24 24"><path d="M12 4v11M7.5 10.5L12 15l4.5-4.5M5 20h14"/></svg>来源清单 .json</a>
+    </div>
+  </header>
+
+  <div class="ds-body">
+  <div class="ds-col">
+
+  <!-- 摘要 -->
+  <section class="panel reg ds-sum" data-anim>
+    <p class="lead">本平台综合国家荒漠化调查公开统计、ESA CCI 土地覆盖、NASA MODIS NDVI、NASA NEX-GDDP-CMIP6 气候情景及公开行政区边界，构建西北五省约 1 km 年度荒漠化风险数据。<b>2000—2025 年</b>结果主要为遥感反演与统计校准，<b>2026—2050 年</b>为 SSP1-2.6、SSP2-4.5、SSP5-8.5 三种气候情景下的逐年模型预测。置信度、预测区间、综合风险指数、驱动归因和防护建议均为本项目派生结果。</p>
+    <div class="stats">
+      <div><b class="num">3</b><span>直接输入数据<br>遥感 · 气候</span></div>
+      <div><b class="num">2</b><span>官方调查与<br>面积锚点</span></div>
+      <div><b class="num">2</b><span>行政区边界<br>与中文地名</span></div>
+      <div><b class="num">19</b><span>政策、规划与<br>治理案例</span></div>
+      <div><b class="num">8</b><span>模型派生<br>数据集</span></div>
+    </div>
+  </section>
+
+  <!-- 1 链路 -->
+  <section class="panel reg sec" id="s1" data-anim>
+    <div class="sh"><span class="no num">01</span><div><h2>数据链路概览</h2><p>数据不来自单一数据库，而是按以下顺序组合；为避免把“原始观测”“官方统计”和“模型推算”混为一谈，全部数据分为 A—E 五层。</p></div></div>
+    <ol class="flow">
+      <li class="lA"><span class="st num">1</span><b>国家荒漠化调查与省级公开统计</b><small>面积校准</small><i>A</i></li>
+      <li class="lB"><span class="st num">2</span><b>土地覆盖与植被遥感</b><small>地表状态观测</small><i>B</i></li>
+      <li class="lB"><span class="st num">3</span><b>CMIP6 气候情景</b><small>未来气候驱动</small><i>B</i></li>
+      <li class="lC"><span class="st num">4</span><b>省、市、县行政区边界</b><small>空间汇总与中文标注</small><i>C</i></li>
+      <li class="lE"><span class="st num">5</span><b>LightGBM + CA-Markov</b><small>1 km 年度预测</small><i>E</i></li>
+      <li class="out"><span class="st num">6</span><b>等级图 · 面积 · 风险指数 · 置信度 · 预测区间 · 防护建议</b><small>网站展示</small><i>E · D</i></li>
+    </ol>
+    <div class="layers">
+      <a href="#s3" class="lA"><i>A</i><b>官方调查与公开统计</b><span>校准总量、核验长期趋势；不直接提供逐年 1 km 像元标签</span></a>
+      <a href="#s2" class="lB"><i>B</i><b>遥感与气候直接输入</b><span>构建土地覆盖、NDVI、降水、气温等模型特征</span></a>
+      <a href="#s4" class="lC"><i>C</i><b>空间边界与地名</b><span>裁剪研究区、县区统计、地图边界和中文名标注</span></a>
+      <a href="#s7" class="lD"><i>D</i><b>政策、规划与治理案例</b><span>支撑历史防护措施总结和未来防护建议</span></a>
+      <a href="#s5" class="lE"><i>E</i><b>模型派生数据</b><span>风险等级、面积、置信度、区间、归因和多情景对比</span></a>
+    </div>
+  </section>
+
+  <!-- 2 B -->
+  <section class="panel reg sec" id="s2" data-anim>
+    <div class="sh"><span class="no num">02</span><div><h2>直接用于模型的数据<em class="tag lB">B 层</em></h2><p>三类外部数据直接进入模型，构成土地、植被和气候特征。</p></div></div>
+    <div class="cards c3">
+      <article class="src">
+        <header class="lB"><i class="num">B01</i><b>ESA CCI 年度土地覆盖</b><span class="in">模型输入</span></header>
+        <dl><dt>提供方</dt><dd>欧洲空间局气候变化倡议（ESA CCI）</dd><dt>数据集</dt><dd>Annual Global Land Cover Maps</dd><dt>时间范围</dt><dd class="num">1992—2020 年</dd><dt>原始分辨率</dt><dd class="num">300 m，逐年</dd></dl>
+        <h4>项目用途</h4><p>提取裸地、稀疏植被、草地、耕地等土地覆盖信息；参与历史荒漠化代理标签构建及模型特征生成。</p>
+        <h4>本项目处理</h4><p>通过 Microsoft Planetary Computer 的 <code>esa-cci-lc</code> 集合获取，裁剪至西北五省，重投影并聚合至统一 1 km 格网。以 2000、2005、2010、2015、2020 年为主要历史锚点；产品止于 2020 年，2025 年土地覆盖特征沿用 2020 年状态。</p>
+        <p class="warn">土地覆盖类别不是荒漠化等级本身，必须与 NDVI、气候和时序转移特征共同解释。</p>
+        <ul class="links"><li><a href="https://climate.esa.int/en/projects/land-cover/data/" target="_blank" rel="noopener">ESA CCI Land Cover 官方页面</a></li><li><a href="https://planetarycomputer.microsoft.com/catalog" target="_blank" rel="noopener">Microsoft Planetary Computer 数据目录</a></li></ul>
+      </article>
+      <article class="src">
+        <header class="lB"><i class="num">B02</i><b>MODIS/Terra MOD13A1 NDVI</b><span class="in">模型输入</span></header>
+        <dl><dt>提供方</dt><dd>NASA LP DAAC / MODIS</dd><dt>数据集</dt><dd>MOD13A1.061 Vegetation Indices</dd><dt>时间范围</dt><dd class="num">2000 年至今</dd><dt>原始分辨率</dt><dd class="num">500 m，16 天合成</dd></dl>
+        <h4>项目用途</h4><p>反映植被生长和覆盖状况，是识别荒漠化程度、植被退化及恢复的重要直接特征。</p>
+        <h4>本项目处理</h4><p>通过 Planetary Computer 的 <code>modis-13A1-061</code> 集合获取；历史锚点选取接近每年 7 月 15 日的合成影像以降低季节差异，质量控制后重采样到统一 1 km 格网。</p>
+        <p class="warn">NDVI 易受云、积雪、异常值和年内物候影响；单期 NDVI 不等于全年植被覆盖度，也不能单独证明荒漠化发生。</p>
+        <ul class="links"><li><a href="https://ladsweb.modaps.eosdis.nasa.gov/missions-and-measurements/products/MOD13A1" target="_blank" rel="noopener">NASA MOD13A1 产品页</a></li><li><a href="https://modis.gsfc.nasa.gov/data/dataprod/mod13.php" target="_blank" rel="noopener">NASA MODIS 植被指数说明</a></li></ul>
+      </article>
+      <article class="src">
+        <header class="lB"><i class="num">B03</i><b>NASA NEX-GDDP-CMIP6</b><span class="in">模型输入</span></header>
+        <dl><dt>提供方</dt><dd>NASA Center for Climate Simulation（NCCS）</dd><dt>情景 · 模式</dt><dd class="num">SSP1-2.6 · SSP2-4.5 · SSP5-8.5　IITM-ESM</dd><dt>获取渠道</dt><dd>SSP1-2.6：NASA NEX-GDDP-CMIP6 AWS 原始归档；SSP2-4.5、SSP5-8.5：Microsoft Planetary Computer 提供的同一数据集归档</dd><dt>变量</dt><dd><code>pr</code> 降水率 · <code>tas</code> 近地面气温</dd><dt>原始分辨率</dt><dd class="num">0.25°，逐日</dd></dl>
+        <h4>项目用途</h4><p>生成年降水、年均温及其变化量，作为未来荒漠化风险的气候驱动变量；同时用于县区气象指标中的降水和气温。</p>
+        <h4>本项目处理</h4><p>三种情景均下载 2025、2030、2040、2050 四个节点的逐日数据，聚合为年度气候特征，2035、2045 等中间年份作线性插值后映射至 1 km 格网。1 km 是模型输出和汇总格网，不代表原始气候数据达到 1 km 分辨率。</p>
+        <ul class="links"><li><a href="https://www.nccs.nasa.gov/data-collections/nex-gddp-cmip6/" target="_blank" rel="noopener">NASA NEX-GDDP-CMIP6 官方介绍</a></li><li><a href="https://registry.opendata.aws/nex-gddp-cmip6/" target="_blank" rel="noopener">AWS 开放数据归档</a></li><li><a href="https://planetarycomputer.microsoft.com/dataset/nasa-nex-gddp-cmip6" target="_blank" rel="noopener">Planetary Computer 数据集页</a></li><li><a href="https://ntrs.nasa.gov/api/citations/20240011616/downloads/s41597-022-01393-4.pdf" target="_blank" rel="noopener">数据集技术论文（PDF）</a></li></ul>
+      </article>
+    </div>
+  </section>
+
+  <!-- 3 A -->
+  <section class="panel reg sec" id="s3" data-anim>
+    <div class="sh"><span class="no num">03</span><div><h2>官方调查与面积校准资料<em class="tag lA">A 层</em></h2><p>官方调查只作为统计校准与结果核验，不被扩展为逐年、逐像元的“官方真值”。</p></div></div>
+    <div class="cards c12">
+      <article class="src">
+        <header class="lA"><i class="num">A01</i><b>全国荒漠化和沙化调查 / 监测</b><span class="in out">校准 · 核验</span></header>
+        <dl><dt>发布机构</dt><dd>国家林业和草原局</dd><dt>监测周期</dt><dd>通常五年一次；2019 年完成第六次全国调查，随后增加年度动态监测</dd></dl>
+        <h4>项目用途</h4><p>核验全国及省域荒漠化、沙化面积和长期变化方向，为模型年度面积序列提供量级约束。</p>
+        <ul class="links"><li><a href="https://www.forestry.gov.cn/c/www/zxzb/250089.jhtml" target="_blank" rel="noopener">2019 年第六次全国荒漠化和沙化调查发布信息</a></li><li><a href="https://www.forestry.gov.cn/main/65/20151229/835177.html" target="_blank" rel="noopener">2014 年第五次监测公报</a></li><li><a href="https://www.forestry.gov.cn/c/www/lczy/38634.jhtml" target="_blank" rel="noopener">2004 年第三次全国调查资料</a></li></ul>
+      </article>
+      <article class="src">
+        <header class="lA"><i class="num">A02</i><b>2019 年西北五省公开面积锚点</b><span class="in out">省级校准</span></header>
+        <p>用于校准年度荒漠化面积序列的省级总量。只有下表年份和口径属于官方 / 公开统计，其余年份为模型反演、插值或预测结果。</p>
+        <table class="tbl anchors">
+          <thead><tr><th>省区</th><th class="r">2019 年公开锚点</th><th class="bar"></th><th class="r">校准因子</th><th>来源</th></tr></thead>
+          <tbody>
+            <tr><td>新疆</td><td class="r num">1,068,662 km²</td><td class="bar"><i style="width:100%"></i></td><td class="r num">0.774</td><td><a href="https://lcj.xinjiang.gov.cn/lcj/jgjs/202310/552864b770d9472b8974ab9ea0ed6008.shtml" target="_blank" rel="noopener">新疆林草局</a></td></tr>
+            <tr><td>甘肃</td><td class="r num">192,393 km²</td><td class="bar"><i style="width:18%"></i></td><td class="r num">0.778</td><td><a href="https://szb.gansudaily.com.cn/gsrb/pc/con/202306/16/c93125.html" target="_blank" rel="noopener">甘肃日报</a></td></tr>
+            <tr><td>青海</td><td class="r num">190,358 km²</td><td class="bar"><i style="width:17.8%"></i></td><td class="r num">0.461</td><td><a href="https://fdi.mofcom.gov.cn/resource/pdf/2020/10/21/51e8da30b76644aa9bc7ae9bee6df807.pdf" target="_blank" rel="noopener">青海省情资料 PDF</a></td></tr>
+            <tr><td>宁夏</td><td class="r num">约 26,400 km²</td><td class="bar"><i style="width:2.5%"></i></td><td class="r num">0.797</td><td><a href="https://www.forestry.gov.cn/c/www/lcdt/656446.jhtml" target="_blank" rel="noopener">国家林草局</a></td></tr>
+            <tr><td>陕西</td><td class="r num">26,500 km²</td><td class="bar"><i style="width:2.5%"></i></td><td class="r num">0.977</td><td><a href="https://www.forestry.gov.cn/c/www/hm/507279.jhtml" target="_blank" rel="noopener">国家林草局</a></td></tr>
+          </tbody>
+          <tfoot><tr><td>五省合计</td><td class="r num">1,504,313 km²</td><td colspan="3" class="mut">首页时间轴中的红色菱形即此锚点</td></tr></tfoot>
+        </table>
+        <p class="warn">不同公开资料可能使用“荒漠化土地”“沙化土地”“沙区土地”等不同口径；宁夏为公开资料约数。展示时保留指标名称和年份，不应把不同口径的数字直接横向比较。校准因子 = 官方面积 ÷ 1 km 模型同年面积。</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- 4 C -->
+  <section class="panel reg sec" id="s4" data-anim>
+    <div class="sh"><span class="no num">04</span><div><h2>行政区边界与中文地名<em class="tag lC">C 层</em></h2><p>用于裁剪研究区、县区统计、地图中文标注和地图底图。</p></div></div>
+    <div class="cards c2">
+      <article class="src">
+        <header class="lC"><i class="num">C01</i><b>geoBoundaries 中国一级行政区</b><span class="in out">空间辅助</span></header>
+        <dl><dt>数据集</dt><dd>China ADM1，gbOpen 版本</dd><dt>许可</dt><dd>CC BY 4.0，应保留来源署名</dd></dl>
+        <h4>项目用途</h4><p>构建西北五省研究区外轮廓、区域裁剪和省级空间检查。</p>
+        <ul class="links"><li><a href="https://www.geoboundaries.org/" target="_blank" rel="noopener">geoBoundaries 官网</a></li><li><a href="https://www.geoboundaries.org/api.html" target="_blank" rel="noopener">API 与许可说明</a></li></ul>
+      </article>
+      <article class="src">
+        <header class="lC"><i class="num">C02</i><b>阿里云 DataV GeoAtlas 市县边界</b><span class="in out">空间辅助</span></header>
+        <dl><dt>提供方</dt><dd>阿里云 DataV；官方文档说明行政区数据来源于高德地图</dd><dt>粒度</dt><dd>省、市、区县；当前约 367 个县级单元</dd><dt>接口</dt><dd><code>geo.datav.aliyun.com/areas_v3/bound/{行政区代码}_full.json</code></dd></dl>
+        <h4>项目用途</h4><p>下载地级市和县区 GeoJSON，建立中文省、市、县名称与行政区代码映射；用于县区边界绘制、地图中文标注和县区级统计。首页“研究区位置”图左下角的南海诸岛示意（含十段线）取自同源的全国边界数据（100000_full）。</p>
+        <p class="warn">适合可视化和一般统计，不等同于主管部门审定的标准地图。公开发布前应按中国地图管理规定复核国界线、行政界线、审图号与底图合规性。</p>
+        <ul class="links"><li><a href="https://help.aliyun.com/zh/datav/datav-6-0/user-guide/datav-geoatlas-widget/" target="_blank" rel="noopener">DataV GeoAtlas 官方说明</a></li><li><a href="https://help.aliyun.com/zh/datav/datav-6-0/user-guide/choropleth-layer-of-v3-x" target="_blank" rel="noopener">行政区边界图层说明</a></li></ul>
+      </article>
+      <article class="src">
+        <header class="lC"><i class="num">C03</i><b>天地图在线矢量底图</b><span class="in out">在线底图</span></header>
+        <dl><dt>提供方</dt><dd>国家地理信息公共服务平台（天地图）</dd><dt>图层</dt><dd>矢量底图 vec_w 与矢量注记 cva_w，Web 墨卡托投影</dd><dt>审图号</dt><dd>GS(2024)0650号</dd><dt>使用条件</dt><dd>需联网，并在 <code>assets/js/config.js</code> 填写天地图开发者密钥</dd></dl>
+        <h4>项目用途</h4><p>首页与地区页地图的底图。荒漠化结果作为独立的专题栅格层叠加在底图之上，可在地图下方调节不透明度；专题内容为本项目模型结果，不来自天地图。未配置密钥或离线时，地图自动改用简化示意底图。</p>
+        <ul class="links"><li><a href="https://www.tianditu.gov.cn/" target="_blank" rel="noopener">天地图官网</a></li><li><a href="https://console.tianditu.gov.cn/" target="_blank" rel="noopener">开发者控制台（申请密钥）</a></li></ul>
+      </article>
+    </div>
+  </section>
+
+  <!-- 5 E -->
+  <section class="panel reg sec" id="s5" data-anim>
+    <div class="sh"><span class="no num">05</span><div><h2>模型标签、预测结果和统计指标<em class="tag lE">E 层</em></h2><p>以下均为本项目计算结果，不是外部机构直接发布的数据。每项注明在网站中的位置。模型本身的结构、参数与验证见<a href="model.html" style="color:var(--petrol-2);font-weight:600;border-bottom:1px solid var(--signal)">“模型说明”页</a>。</p></div></div>
+    <div class="cards c2 ecards">
+      <article class="src">
+        <header class="lE"><i class="num">E01</i><b>五级荒漠化代理标签</b><span class="in der">模型派生</span></header>
+        <dl><dt>等级</dt><dd>稳定、轻度、中度、重度、极重度</dd><dt>构建方式</dt><dd>土地覆盖类型 + NDVI 阈值 + 历史时序规则</dd><dt>网站位置</dt><dd>地图“荒漠化等级”图层与图例</dd><dt>性质</dt><dd class="q">遥感代理标签，非法定调查等级</dd></dl>
+      </article>
+      <article class="src">
+        <header class="lE"><i class="num">E02</i><b>约 1 km 年度风险栅格（2000—2050）</b><span class="in der">模型派生</span></header>
+        <dl><dt>历史期</dt><dd>2000—2025：遥感锚点 + 年度插值 + 统计校准</dd><dt>预测期</dt><dd>2026—2050：SSP1-2.6、SSP2-4.5、SSP5-8.5 各 25 期逐年结果，LightGBM 分类 + CA-Markov 空间转移</dd><dt>情景设置</dt><dd>三情景复用同一历史模型和 1 km Markov 矩阵，只替换 IITM-ESM 降水与气温场</dd><dt>空间邻域</dt><dd>CA 综合历史转移概率、邻域状态和气候压力修正</dd><dt>网站位置</dt><dd>首页与地区页地图、逐年时间轴</dd><dt>格网</dt><dd class="q">约 0.01°，非严格等面积</dd></dl>
+      </article>
+      <article class="src">
+        <header class="lE"><i class="num">E03</i><b>荒漠化面积与风险指数</b><span class="in der">模型派生</span></header>
+        <dl><dt>荒漠化面积</dt><dd>轻度及以上像元按实际面积汇总，再以 2019 年省级公开锚点（A02）比例校准</dd><dt>土地风险指数</dt><dd>各等级赋有序权重，按面积加权平均，归一化至 0—1</dd><dt>综合风险指数</dt><dd>2025 年起：0.65 × 土地风险 + 0.20 × 降水亏缺风险 + 0.15 × 增温风险</dd><dt>网站位置</dt><dd>首页概览、时间轴面积曲线；地区页风险指数</dd><dt>用途</dt><dd class="q">同一模型体系内的相对比较</dd></dl>
+        <p class="note">降水亏缺风险 = clip(−降水距平% ÷ 20, 0, 1)；增温风险 = clip(增温 ℃ ÷ 3, 0, 1)，均相对 2025 年。</p>
+      </article>
+      <article class="src">
+        <header class="lE"><i class="num">E04</i><b>预测置信度与 90% 预测区间</b><span class="in der">模型派生</span></header>
+        <dl><dt>像元置信度</dt><dd>来自分类器类别概率，结合历史外推距离、输入完整性和时序一致性修正</dd><dt>区域置信度</dt><dd>县区 / 省域像元置信度的加权汇总</dd><dt>90% 区间</dt><dd>由分类概率、模型误差、年度变化和面积校准误差传播得到</dd><dt>网站位置</dt><dd>“置信度”图层、时间轴阴影、各处置信度数值</dd><dt>注意</dt><dd class="q">置信度不等于预测正确的概率</dd></dl>
+        <p class="note">CA-Markov 的全区数量约束会使约 0.10%—0.16% 的“格网 × 年份”点预测落在原始中央 90% 类别区间之外。三种情景已统一改用“中央 90% 区间与点预测的包络”，保证下限 ≤ 点预测 ≤ 上限。</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- 6 -->
+  <section class="panel reg sec" id="s6" data-anim>
+    <div class="sh"><span class="no num">06</span><div><h2>县区指标、驱动归因与多情景<em class="tag lE">E 层</em></h2><p>地区预测页中带“代理”标记的内容，以及三种气候情景的口径如下。</p></div></div>
+    <table class="tbl kind">
+      <thead><tr><th>指标</th><th>当前数据性质</th><th>网站标注</th><th>网站位置</th></tr></thead>
+      <tbody>
+        <tr><td>年降水量</td><td>NEX-GDDP-CMIP6 <code>pr</code> 县区面积加权汇总</td><td><span class="k k-sim">情景模拟 / 模型派生</span></td><td>地区概况 · 指标</td></tr>
+        <tr><td>年平均气温</td><td>NEX-GDDP-CMIP6 <code>tas</code> 县区面积加权汇总</td><td><span class="k k-sim">情景模拟 / 模型派生</span></td><td>地区概况 · 指标</td></tr>
+        <tr><td>地下水位变化 <i class="e">E06</i></td><td>依据干旱度、灌溉压力和风险变化构造的代理量</td><td><span class="k k-proxy">代理 · 非监测井实测</span></td><td>地区概况 · 指标</td></tr>
+        <tr><td>大风日数 <i class="e">E06</i></td><td>依据风险、气候压力和地区基线构造的代理量</td><td><span class="k k-proxy">代理 · 非气象站统计</span></td><td>地区概况 · 指标</td></tr>
+        <tr><td>风险驱动因子贡献 <i class="e">E07</i></td><td>规则化 / 模型化贡献率估计，用于解释预测结果</td><td><span class="k k-proxy">代理归因 · 非因果识别</span></td><td>地区概况 · 驱动因子</td></tr>
+        <tr><td>SSP2-4.5</td><td>默认情景；1 km 逐年预测，驱动模型的 IITM-ESM 降水与气温</td><td><span class="k k-sim">模型直接结果</span></td><td>全站（默认）</td></tr>
+        <tr><td>SSP1-2.6、SSP5-8.5 <i class="e">E08</i></td><td>同一模型、同一 Markov 矩阵，替换为对应情景的气候场后逐年推演</td><td><span class="k k-sim">模型直接结果</span></td><td>首页、地区页的情景切换与“情景差异”图层</td></tr>
+      </tbody>
+    </table>
+    <div class="scnbox">
+      <h3>三种情景 2050 年对照<small>E08 · 西北五省合计</small></h3>
+      <table class="tbl">
+        <thead><tr><th>情景</th><th class="r">荒漠化面积（官方口径）</th><th class="r">综合风险指数</th><th class="r">平均置信度</th><th class="r">与另两情景不同的格网</th></tr></thead>
+        <tbody>
+          <tr><td class="num">SSP1-2.6</td><td class="r num">144.77 万km²</td><td class="r num">0.374</td><td class="r num">85.1%</td><td class="r num">2.37%（vs 2-4.5）· 2.24%（vs 5-8.5）</td></tr>
+          <tr><td class="num">SSP2-4.5</td><td class="r num">144.79 万km²</td><td class="r num">0.406</td><td class="r num">85.0%</td><td class="r num">2.37%（vs 1-2.6）· 2.48%（vs 5-8.5）</td></tr>
+          <tr><td class="num">SSP5-8.5</td><td class="r num">144.82 万km²</td><td class="r num">0.388</td><td class="r num">85.0%</td><td class="r num">2.24%（vs 1-2.6）· 2.48%（vs 2-4.5）</td></tr>
+        </tbody>
+      </table>
+      <p>Markov 矩阵固定了每个起始等级的转移数量，气候情景主要改变转移发生在哪里，而不大幅改变全区各等级的总量。因此三种情景的总面积几乎相同，差别落在局部格网上：2050 年约有 2%—2.5% 的格网等级不同。看情景影响，应看首页的“情景差异”图层、县区汇总和两两差异，而不是只看五省总面积。综合风险指数的差别主要来自气候项：2050 年 SSP2-4.5 有几个省区降水比 2025 年少，降水亏缺风险项最高（0.21）；SSP5-8.5 增温风险项最高（0.25）；SSP1-2.6 两项都最低。</p>
+      <p class="note">面积和气候距平的口径：SSP2-4.5 为官方口径校准表；另两种情景在该表上叠加“本情景 − SSP2-4.5”的模型差值（差值法），以避免行政边界口径不同带来的系统偏差。单一气候模式（IITM-ESM）不代表多模式集合的不确定性。</p>
+    </div>
+    <p class="note">若需把地下水位和大风日数作为观测数据，应另行接入水利部门地下水监测井和中国气象站逐日风速资料，并完成站点质量控制与县域插值。切换到 SSP1-2.6 或 SSP5-8.5 时，这两项代理指标、驱动因子归因和措施表仍沿用 SSP2-4.5 口径。</p>
+  </section>
+
+  <!-- 7 D -->
+  <section class="panel reg sec" id="s7" data-anim>
+    <div class="sh"><span class="no num">07</span><div><h2>防护措施资料<em class="tag lD">D 层</em></h2><p>历史措施来自法律法规、国家和省级规划、主管部门公开资料与典型治理案例；未来建议将这些政策工具与模型预测的风险等级、变化方向和驱动因素匹配。编号与地区预测页“防护措施”中的来源编号一致。</p></div></div>
+    <div class="dcols">
+      <div>
+        <h3>国家法律与规划<small>D01—D10</small></h3>
+        <ol class="dl">
+          <li><i class="num">D01</i><a href="https://www.mee.gov.cn/ywgz/fgbz/fl/201811/t20181114_673626.shtml" target="_blank" rel="noopener">《中华人民共和国防沙治沙法》</a></li>
+          <li><i class="num">D02</i><a href="https://www.forestry.gov.cn/c/www/gkbmgz/300049.jhtml" target="_blank" rel="noopener">《退耕还林条例》</a></li>
+          <li><i class="num">D03</i><a href="https://www.forestry.gov.cn/c/sbj/gcgh/355834.jhtml" target="_blank" rel="noopener">三北工程总体规划</a></li>
+          <li><i class="num">D04</i><a href="https://www.forestry.gov.cn/c/www/gwywj/39912.jhtml" target="_blank" rel="noopener">国务院办公厅关于进一步推进三北防护林体系建设的意见</a></li>
+          <li><i class="num">D05</i><a href="https://www.mee.gov.cn/zcwj/gwywj/201811/t20181129_676513.shtml" target="_blank" rel="noopener">国务院关于促进牧区又好又快发展的若干意见</a></li>
+          <li><i class="num">D06</i><a href="https://www.forestry.gov.cn/lyj/1/gkzfwj/20161019/300333.html" target="_blank" rel="noopener">三北五期百万亩防护林基地管理办法</a></li>
+          <li><i class="num">D07</i><a href="https://jcs.moa.gov.cn/trzgl/201603/t20160304_5040527.htm" target="_blank" rel="noopener">新一轮草原生态保护补助奖励政策</a></li>
+          <li><i class="num">D08</i><a href="https://www.forestry.gov.cn/c/www/gktafw/96836.jhtml" target="_blank" rel="noopener">关于加强我国荒漠化防治的提案复文</a></li>
+          <li><i class="num">D09</i><a href="https://www.forestry.gov.cn/c/www/gkzfwj/521549.jhtml" target="_blank" rel="noopener">《全国防沙治沙规划（2021—2030 年）》</a></li>
+          <li><i class="num">D10</i><a href="https://www.gov.cn/zhengce/zhengceku/2022-01/14/5668161/files/bc524050c51743ebac672ae348057c8a.pdf" target="_blank" rel="noopener">《北方防沙带生态保护和修复重大工程建设规划（2021—2035 年）》PDF</a></li>
+        </ol>
+      </div>
+      <div>
+        <h3>地方政策、技术规范与案例<small>D11—D19</small></h3>
+        <ol class="dl">
+          <li><i class="num">D11</i><a href="https://lcj.xinjiang.gov.cn/lcj/mtbd/202406/3aeab68af6044a0d83b99e743ed4869d.shtml" target="_blank" rel="noopener">新疆塔克拉玛干沙漠边缘阻击战九条措施</a><em>新疆</em></li>
+          <li><i class="num">D12</i><a href="https://zwfw.gansu.gov.cn/maiji/sbqd/mtbd/art/2022/art_bcf35807d48a447abc1c5837a2227a37.html" target="_blank" rel="noopener">甘肃省科学绿化实施意见</a><em>甘肃</em></li>
+          <li><i class="num">D13</i><a href="https://hdgyy.qinghai.gov.cn/cms/zfxxgk/show.html?id=228" target="_blank" rel="noopener">青海省“十四五”生态保护修复任务</a><em>青海</em></li>
+          <li><i class="num">D14</i><a href="https://sthjt.nx.gov.cn/zwgk/hjgh/zxgh/201704/t20170429_3631212.html" target="_blank" rel="noopener">宁夏环境保护“十三五”规划</a><em>宁夏</em></li>
+          <li><i class="num">D15</i><a href="https://slt.shaanxi.gov.cn/bmcs/sxstbc/zcfg_2038/202305/P020230505282933287023.pdf" target="_blank" rel="noopener">陕西省风沙区水土流失综合治理技术规范 PDF</a><em>陕西</em></li>
+          <li class="case"><i class="num">D16</i><a href="https://lcj.xinjiang.gov.cn/lcj/mtbd/202502/bbd5108ce689417da8ddf64b9beca775.shtml" target="_blank" rel="noopener">新疆沙雅县生态保护修复与沙漠锁边实践</a><em>案例</em></li>
+          <li class="case"><i class="num">D17</i><a href="https://lcj.xinjiang.gov.cn/lcj/c114635/202403/fecacb8519474b9d86f54884fa455ab6.shtml" target="_blank" rel="noopener">新疆塔克拉玛干沙漠边缘阻击战阶段实践</a><em>案例</em></li>
+          <li class="case"><i class="num">D18</i><a href="https://zwfw.gansu.gov.cn/maiji/sbqd/gg/art/2024/art_4b63d07033f542618ccadc67b31bfa6a.html" target="_blank" rel="noopener">甘肃河西走廊、民勤与八步沙治理资料</a><em>案例</em></li>
+          <li class="case"><i class="num">D19</i><a href="https://lyj.shaanxi.gov.cn/zwxx/mtbd/202306/t20230625_2291203.html" target="_blank" rel="noopener">陕西榆林防沙治沙历史做法</a><em>案例</em></li>
+        </ol>
+        <p class="note">D16—D19 为实际治理案例，地区预测页 2000—2025 年“往年措施”只展示这四份文件。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8 -->
+  <section class="panel reg sec caveat" id="s8" data-anim>
+    <div class="sh"><span class="no num">08</span><div><h2>未作为正式观测输入的数据</h2><p>为保证页面表述可审计，以下项目不得直接标为“实测数据”。</p></div></div>
+    <ol class="cv">
+      <li><b>CLCD 中国年度土地覆盖下载脚本</b><span>项目中保留了替代数据下载路径，但正式 1 km 年度结果使用 ESA CCI Land Cover，不使用该脚本输出作为主输入。</span></li>
+      <li><b>三种情景的代理字段</b><span>SSP1-2.6、SSP5-8.5 已有 1 km 逐年结果，但地下水位、大风日数、驱动归因与措施表仍只按 SSP2-4.5 生成。</span></li>
+      <li><b>地下水位变化与大风日数</b><span>当前为代理指标，不是监测井或气象站实测序列。</span></li>
+      <li><b>逐年荒漠化面积</b><span>除明确标注的官方调查锚点外，2000—2050 年连续序列均为遥感反演、插值、校准或预测结果。</span></li>
+      <li><b>县区驱动因子贡献率</b><span>属于模型解释输出，不是社会经济统计或因果研究结论。</span></li>
+    </ol>
+  </section>
+
+  <!-- 9 -->
+  <section class="panel reg sec" id="s9" data-anim>
+    <div class="sh"><span class="no num">09</span><div><h2>数据处理、版本与可追溯性</h2><p>统一处理原则与本地元数据清单。</p></div></div>
+    <div class="prin">
+      <div><span>坐标参考</span><b>EPSG:4326</b><p>主要输出统一采用 WGS 84 经纬度。</p></div>
+      <div><span>模型格网</span><b>约 0.01°</b><p>对外表述为“约 1 km”。</p></div>
+      <div><span>面积计算</span><b>按纬度修正</b><p>按像元所在纬度计算实际面积，不用格网数量代替 km²。</p></div>
+      <div><span>年度口径</span><b>观测 / 插值 / 预测</b><p>历史锚点与中间年插值分开标识；2026 年以后标识为预测。</p></div>
+      <div><span>缺失值</span><b>原始与修复分存</b><p>修复版本仅供展示和汇总。</p></div>
+      <div><span>行政汇总</span><b>面积加权</b><p>按县区边界与像元覆盖关系面积加权。</p></div>
+    </div>
+    <div class="prov">
+      <h3>本地元数据与清单</h3>
+      <ul>
+        <li><code>data/processed/remote_data_summary.json</code><span>ESA CCI 与 MODIS 获取和处理摘要</span></li>
+        <li><code>data/processed/cmip6_manifest.json</code><span>CMIP6 模式、情景、变量、年份与文件清单（SSP2-4.5）；SSP1-2.6、SSP5-8.5 见 <code>cmip6_ssp126_manifest.json</code>、<code>cmip6_ssp585_manifest.json</code></span></li>
+        <li><code>outputs/model_1km_full/scenarios/</code><span>两种新增情景的逐年栅格、三情景汇总与两两差异、区间包络修复报告</span></li>
+        <li><code>data/raw/boundaries/*.metadata.json</code><span>行政边界下载元数据</span></li>
+        <li><code>outputs/</code><span>年度栅格、统计表、置信度、预测区间和网站派生数据</span></li>
+      </ul>
+      <p class="note">建议每次重新训练后记录：模型版本、代码提交、输入数据版本、下载时间、空间范围、随机种子、训练 / 验证划分、评价指标以及结果生成时间。</p>
+    </div>
+  </section>
+
+  <!-- 10 历史记录 -->
+  <section class="panel reg sec" id="s10" data-anim>
+    <div class="sh"><span class="no num">10</span><div><h2>历史记录：资料与影像</h2><p>“历史记录”下两篇（沙海长路、漠上群英）所用史料、影像与照片的出处和授权。历史叙述用于提供背景，与本平台的模型结果相互独立。</p></div></div>
+    <h3 class="hsub">沙海长路 · 8 幅影像</h3>
+    <table class="tbl himg">
+      <thead><tr><th>画面</th><th>时间</th><th>来源与署名</th><th>授权</th></tr></thead>
+      <tbody>
+        <tr><td>黄河一段</td><td class="num">1994-09/10</td><td>NASA，STS068-220-033，约翰逊航天中心</td><td><span class="k k-sim">公共领域</span></td></tr>
+        <tr><td>戈壁、祁连山与青海湖</td><td class="num">1994-04</td><td>NASA，STS059-220-041，约翰逊航天中心</td><td><span class="k k-sim">公共领域</span></td></tr>
+        <tr><td>沙尘笼罩华北</td><td class="num">2006-04-17</td><td>© ESA，Envisat / MERIS</td><td><span class="k k-proxy">CC BY-SA 3.0 IGO</span></td></tr>
+        <tr><td>塔克拉玛干上空的沙尘</td><td class="num">2019-03-22</td><td>NASA Earth Observatory，Joshua Stevens 制图；VIIRS / Suomi NPP 数据（NASA EOSDIS/LANCE、GIBS/Worldview）；参考 Hongbin Yu 等（2020）；文字 Adam Voiland</td><td><span class="k k-sim">公共领域</span></td></tr>
+        <tr><td>库布其光伏阵列（2017）</td><td class="num">2017-12-20</td><td>NASA Earth Observatory，Michala Garrison 制图；Landsat 8 OLI，USGS 数据；文字 Adam Voiland</td><td><span class="k k-sim">公共领域</span></td></tr>
+        <tr><td>库布其光伏阵列（2024）</td><td class="num">2024-12-08</td><td>NASA Earth Observatory，Michala Garrison 制图；Landsat 9 OLI-2，USGS 数据；文字 Adam Voiland</td><td><span class="k k-sim">公共领域</span></td></tr>
+        <tr><td>从国际空间站看库布其</td><td class="num">2022-06</td><td>© ESA/NASA – S. Cristoforetti / A. Conigli（ESA 原图说明将库布其误标为蒙古国，实际位于中国内蒙古）</td><td><span class="k k-proxy">ESA 标准许可</span></td></tr>
+        <tr><td>塔克拉玛干边缘的春季返青</td><td class="num">2020-04-29</td><td>NASA Earth Observatory，Terra MODIS</td><td><span class="k k-sim">公共领域</span></td></tr>
+      </tbody>
+    </table>
+    <h3 class="hsub">漠上群英 · 10 幅照片</h3>
+    <table class="tbl himg">
+      <thead><tr><th>画面</th><th>时间</th><th>来源与署名</th><th>授权</th></tr></thead>
+      <tbody>
+        <tr><td>沙坡头的草方格沙障</td><td class="num">—</td><td>sylvannus，Panoramio（经 Wikimedia Commons）</td><td><span class="k k-proxy">CC BY-SA 3.0</span></td></tr>
+        <tr><td>竺可桢</td><td class="num">1963</td><td>《人民画报》1963 年第 5 期</td><td><span class="k k-sim">公共领域</span></td></tr>
+        <tr><td>治理十年后的陕西毛乌素沙地</td><td class="num">1964</td><td>《人民画报》1964 年第 7 期，原题“治理十年后的陕西毛乌苏沙漠”</td><td><span class="k k-sim">公共领域</span></td></tr>
+        <tr><td>梭梭</td><td class="num">2017-07-22</td><td>Anagoria，摄于新疆鄯善县</td><td><span class="k k-proxy">CC BY 3.0</span></td></tr>
+        <tr><td>肉苁蓉</td><td class="num">2017-07-22</td><td>Anagoria，摄于新疆鄯善县</td><td><span class="k k-proxy">CC BY 3.0</span></td></tr>
+        <tr><td>宁夏境内的毛乌素沙地</td><td class="num">2011-07-15</td><td>sylvannus，Panoramio（经 Wikimedia Commons），拍摄点约在宁夏吴忠</td><td><span class="k k-proxy">CC BY-SA 3.0</span></td></tr>
+        <tr><td>殷玉珍</td><td class="num">2024-04</td><td>中国新闻社视频截图（经 Wikimedia Commons）</td><td><span class="k k-proxy">CC BY 4.0</span></td></tr>
+        <tr><td>毛乌素沙地东南部（1985）</td><td class="num">1985</td><td>USGS Landsat，经 LandsatLook 导出</td><td><span class="k k-sim">公共领域</span></td></tr>
+        <tr><td>毛乌素沙地东南部（2021）</td><td class="num">2021</td><td>含 Copernicus Sentinel-2 数据（ESA），经 Sentinel Hub 导出</td><td><span class="k k-proxy">CC BY-SA 4.0</span></td></tr>
+        <tr><td>且末附近的芦苇草方格</td><td class="num">1993-07-31</td><td>真木太一，日本国际农林水产业研究中心（JIRCAS），经 Flickr</td><td><span class="k k-proxy">CC BY 2.0</span></td></tr>
+      </tbody>
+    </table>
+    <div class="hcols">
+      <div>
+        <h3>影像授权要点</h3>
+        <ul>
+          <li>NASA 影像为美国联邦政府作品，属公共领域；使用时保留署名，不暗示 NASA 对本平台的认可。</li>
+          <li>ESA 标准许可允许教育、编辑和信息用途，禁止商业用途，须标注 © ESA 及摄影者；它不是知识共享协议。</li>
+          <li>2006 年沙尘影像按 CC BY-SA 3.0 IGO 署名使用。这些影像不随本项目的 CC BY-NC-SA 4.0 协议重新授权。</li>
+          <li>“漠上群英”的照片取自维基共享资源（Wikimedia Commons），按各自协议署名使用；CC BY-SA 照片经缩放、裁边和压缩后仍沿用原协议。</li>
+          <li>除竺可桢、殷玉珍两幅肖像外，这些照片只作地点和做法的参照，并非所写人物本人或事发现场。</li>
+          <li>为适配网页，影像经过缩放与压缩；图注为本平台依据来源资料撰写。</li>
+        </ul>
+      </div>
+      <div>
+        <h3>史料出处</h3>
+        <ul>
+          <li>沙坡头站建站与包兰铁路治沙：中国科学院沙坡头沙漠研究试验站站史资料（国家生态系统观测研究网络，2021）。</li>
+          <li>三北防护林工程与相关争议：NASA Earth Observatory，<i>Dampening Dust Storms</i>（2016 年 8 月）。</li>
+          <li>亚洲沙尘的长期变化：NASA Earth Observatory，<i>A Decline in Asian Dust</i>（2020 年 1 月）及其所引研究。</li>
+          <li>库布其光伏阵列：NASA Earth Observatory，<i>Building a Great Solar Wall in China</i>（2024 年 12 月）。</li>
+          <li>青土湖 1959 年干涸及 2010 年重现季节性水面：新华社、浙江在线等公开报道（2016 年 7 月）。</li>
+          <li>八步沙林场“六老汉”三代治沙：人民网—中国共产党新闻网（2019 年 3 月 28 日）。</li>
+          <li>塔克拉玛干沙漠边缘 3046 公里绿色阻沙防护带合龙：《人民日报》（2024 年 11 月 29 日）、新华社（2024 年 11 月 28 日）。</li>
+          <li>2006 年北京沙尘过程：ESA 同期影像与解说资料。</li>
+          <li>石光银：《中国绿色时报》2017 年 9 月 1 日《石光银：与沙较量的农民》（国家林业局网站发布）。</li>
+          <li>八步沙三代治沙人：央广网《最美奋斗者丨八步沙“六老汉”：让绿色梦想代代传》（2019 年 10 月 26 日）。</li>
+          <li>王有德：新华社《“治沙英雄”王有德》（2005 年 6 月 16 日）。</li>
+          <li>殷玉珍、宝日勒岱、“十三姐妹”与毛乌素治沙技术：《人民日报》2026 年 10 月 8 日《沙海深处“追梦人”（深度观察）》。</li>
+          <li>“漠上群英”中的称号（如“全国治沙英雄”“人民楷模”）照录自公开报道，数字以所引报道发布时的口径为准。</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- 11 署名 -->
+  <section class="panel reg sec" id="s11" data-anim>
+    <div class="sh"><span class="no num">11</span><div><h2>署名、许可与免责声明</h2><p>引用或截图本平台地图时，请附上以下署名。</p></div></div>
+    <div class="attr">
+      <blockquote id="attrText">数据：ESA CCI Land Cover、NASA MODIS MOD13A1、NASA NEX-GDDP-CMIP6、国家林草局公开调查资料、geoBoundaries、阿里云 DataV GeoAtlas；底图：天地图（审图号 GS(2024)0650号）；模型与制图：西北荒漠化预测项目。历史连续序列和未来值为模型结果，仅供科研、教学与决策辅助。本项目采用 CC BY-NC-SA 4.0 协议许可。</blockquote>
+      <button class="btn-o" id="copyAttr"><svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12"/><path d="M16 8V4H4v12h4"/></svg>复制署名</button>
+    </div>
+    <div class="lic">
+      <a class="cc" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hans" target="_blank" rel="license noopener" title="知识共享 署名-非商业性使用-相同方式共享 4.0 国际">
+        <span>cc</span><span>BY</span><span>NC</span><span>SA</span>
+      </a>
+      <div>
+        <b>许可协议：CC BY-NC-SA 4.0</b>
+        <p>本项目的模型结果、图件与网站内容采用<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hans" target="_blank" rel="license noopener">知识共享 署名-非商业性使用-相同方式共享 4.0 国际许可协议</a>：转载或改编时须<strong>署名</strong>（附上方署名），<strong>不得用于商业目的</strong>，改编作品须以<strong>相同协议</strong>发布。第三方数据与底图（ESA CCI、NASA、geoBoundaries、DataV、天地图等）仍遵循其各自的原始许可。</p>
+      </div>
+    </div>
+    <div class="disc">
+      <b>免责声明</b>
+      <p>本平台不替代国家法定荒漠化调查、标准地图、气象实况或地下水监测。模型结果受遥感误差、输入尺度、情景假设、单一气候模式、标签构建和空间下采样影响。用于工程选址、行政考核或资金配置前，应结合最新地面调查和主管部门资料复核。</p>
+    </div>
+  </section>
+  </div>
+
+  <aside class="toc" data-anim aria-label="本页目录">
+    <div class="panel reg">
+      <h3>本页目录</h3>
+      <ol id="toc">
+        <li><a href="#s1"><span class="num">01</span>数据链路概览</a></li>
+        <li><a href="#s2"><span class="num">02</span>直接用于模型的数据<i class="lB">B</i></a></li>
+        <li><a href="#s3"><span class="num">03</span>官方调查与面积校准<i class="lA">A</i></a></li>
+        <li><a href="#s4"><span class="num">04</span>行政区边界与地名<i class="lC">C</i></a></li>
+        <li><a href="#s5"><span class="num">05</span>模型标签与统计指标<i class="lE">E</i></a></li>
+        <li><a href="#s6"><span class="num">06</span>县区指标与三种情景<i class="lE">E</i></a></li>
+        <li><a href="#s7"><span class="num">07</span>防护措施资料<i class="lD">D</i></a></li>
+        <li><a href="#s8"><span class="num">08</span>非正式观测输入</a></li>
+        <li><a href="#s9"><span class="num">09</span>处理与可追溯性</a></li>
+        <li><a href="#s10"><span class="num">10</span>历史记录资料与照片</a></li>
+        <li><a href="#s11"><span class="num">11</span>署名、许可与免责</a></li>
+      </ol>
+      <div class="toc-ft">
+        <div><i class="lA"></i>A 官方统计</div><div><i class="lB"></i>B 直接输入</div><div><i class="lC"></i>C 边界地名</div><div><i class="lD"></i>D 政策案例</div><div><i class="lE"></i>E 模型派生</div>
+      </div>
+    </div>
+  </aside>
+  </div>
+</main>
+
+
+<script src="assets/js/nav.js?v=20261010c"></script>
+<script src="assets/js/data.js?v=20261010c"></script>
+</body>
+</html>
