@@ -28,6 +28,8 @@ __DOMAIN__ {
     @long_cache path *.png *.jpg *.jpeg *.webp *.svg *.mp4 *.tif *.tiff *.zip *.xlsx *.md
     header @long_cache Cache-Control "public, max-age=604800"
 
-    try_files {path} {path}/ =404
-    file_server
+    handle {
+        try_files {path} {path}/ =404
+        file_server
+    }
 }
