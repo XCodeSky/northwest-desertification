@@ -104,7 +104,7 @@ if (( ENABLE_HTTPS )); then
   command -v certbot >/dev/null || { echo "Certbot is required" >&2; exit 1; }
   certbot --nginx --non-interactive --agree-tos --redirect -m "$EMAIL" -d "$DOMAIN"
 fi
-curl --fail --silent --show-error -H "Host: $DOMAIN" http://127.0.0.1/healthz >/dev/null
+curl --noproxy '*' --fail --silent --show-error -H "Host: $DOMAIN" http://127.0.0.1/healthz >/dev/null
 trap - ERR
 echo "Deployment complete: $RELEASE_DIR"
 if (( ENABLE_HTTPS )); then echo "URL: https://$DOMAIN/"; elif [[ "$DOMAIN" != "_" ]]; then echo "URL: http://$DOMAIN/"; else echo "URL: http://<server-ip>/"; fi

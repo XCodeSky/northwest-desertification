@@ -1,0 +1,33 @@
+{
+__ACME_EMAIL_DIRECTIVE__
+}
+
+__DOMAIN__ {
+    root * __SITE_ROOT__
+    encode zstd gzip
+
+    header {
+        X-Content-Type-Options "nosniff"
+        X-Frame-Options "SAMEORIGIN"
+        Referrer-Policy "strict-origin-when-cross-origin"
+        Permissions-Policy "camera=(), microphone=(), geolocation=()"
+        -Server
+    }
+
+    handle /healthz {
+        header Content-Type "text/plain; charset=utf-8"
+        respond "ok" 200
+    }
+
+    @html path / /index.html *.html
+    header @html Cache-Control "no-cache"
+
+    @short_cache path *.css *.js *.json
+    header @short_cache Cache-Control "public, max-age=3600"
+
+    @long_cache path *.png *.jpg *.jpeg *.webp *.svg *.mp4 *.tif *.tiff *.zip *.xlsx *.md
+    header @long_cache Cache-Control "public, max-age=604800"
+
+    try_files {path} {path}/ =404
+    file_server
+}

@@ -1,6 +1,6 @@
 # Ubuntu 24.04 部署
 
-网站为纯静态站点，推荐使用 Nginx。发布包内置幂等部署脚本，并提供从公开 GitHub Release 下载、校验和部署的一键入口。
+网站为纯静态站点。发布包内置幂等部署脚本，并提供从公开 GitHub Release 下载、校验和部署的一键入口。HTTP 首次部署使用 Nginx；绑定域名后可切换到 Caddy，由 Caddy 自动申请并续期 HTTPS 证书。
 
 ## 推荐的服务器文件位置
 
@@ -46,7 +46,30 @@ sudo bash deploy/ubuntu24/deploy.sh
 
 脚本会安装 Nginx 和 rsync、运行完整性检查、创建带时间戳的发布目录、原子切换当前版本并检查 `/healthz`。
 
-## 域名和 HTTPS
+## 使用 Caddy 启用域名和 HTTPS（推荐）
+
+先完成 HTTP 部署，并确认域名的 A 记录（有 IPv6 时还包括 AAAA 记录）已指向服务器公网地址。腾讯云安全组必须放行入站 TCP 80 和 443。然后在解压后的项目目录运行：
+
+```bash
+cd /home/ubuntu/nw-deploy-v1.0.0/website
+sudo bash deploy/ubuntu24/enable-caddy-https.sh \
+  --domain desert.example.org \
+  --email admin@example.org
+```
+
+脚本会验证现有 `/var/www/nw-desertification/current/index.html`，安装 Caddy，备份 `/etc/caddy/Caddyfile`，停止并禁用占用 80 端口的 Nginx，然后让 Caddy 自动申请证书。证书续期由 Caddy 自动完成。邮箱可省略；域名不可省略，公网 IP 地址不能用于常规受信任证书。
+
+验证命令：
+
+```bash
+curl -I https://desert.example.org/
+sudo systemctl status caddy --no-pager
+sudo journalctl -u caddy -n 100 --no-pager
+```
+
+如签发失败，脚本会恢复原 Caddyfile 并重新启动 Nginx。最常见原因是域名尚未解析到本机、公网 80/443 未放行，或者 AAAA 记录指向了错误的 IPv6 地址。
+
+## 使用 Nginx + Certbot 启用 HTTPS（备选）
 
 先把域名 A/AAAA 记录指向服务器，再执行：
 
@@ -58,7 +81,7 @@ sudo bash /tmp/deploy-from-github.sh --release v1.0.0 \
   --email admin@example.org
 ```
 
-HTTPS 模式使用 Certbot 申请 Let's Encrypt 证书，需要公网开放 80/443 端口。
+此模式使用 Certbot 申请 Let's Encrypt 证书，需要公网开放 80/443 端口；不要与 Caddy 模式同时启用。
 
 ## 天地图密钥
 
