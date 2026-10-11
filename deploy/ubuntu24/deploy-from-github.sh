@@ -64,11 +64,18 @@ DOWNLOAD_BASE="https://github.com/$REPOSITORY/releases/download/$RELEASE"
 WORK_DIR="$(mktemp -d -t nw-desertification.XXXXXXXX)"
 trap 'rm -rf -- "$WORK_DIR"' EXIT
 
-echo "Downloading $REPOSITORY $RELEASE..."
-curl --fail --location --show-error --silent --retry 3 --retry-all-errors \
-  "$DOWNLOAD_BASE/$ARCHIVE" -o "$WORK_DIR/$ARCHIVE"
-curl --fail --location --show-error --silent --retry 3 --retry-all-errors \
-  "$DOWNLOAD_BASE/$CHECKSUM" -o "$WORK_DIR/$CHECKSUM"
+download_file() {
+  local url="$1"
+  local output="$2"
+  curl --http1.1 --fail --location --show-error \
+    --retry 8 --retry-delay 2 --retry-all-errors \
+    --connect-timeout 20 --speed-limit 1024 --speed-time 60 \
+    --continue-at - "$url" -o "$output"
+}
+
+echo "Downloading $REPOSITORY $RELEASE over HTTP/1.1..."
+download_file "$DOWNLOAD_BASE/$ARCHIVE" "$WORK_DIR/$ARCHIVE"
+download_file "$DOWNLOAD_BASE/$CHECKSUM" "$WORK_DIR/$CHECKSUM"
 
 echo "Verifying SHA-256..."
 (cd "$WORK_DIR" && sha256sum --check "$CHECKSUM")

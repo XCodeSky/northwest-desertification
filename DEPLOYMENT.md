@@ -23,7 +23,7 @@
 在服务器左侧 Shell 中直接粘贴以下一行。它会安装基础下载工具，从 GitHub Release `v1.0.0` 下载发布包，验证 SHA-256，然后安装 Nginx 并部署：
 
 ```bash
-sudo apt-get update && sudo apt-get install -y curl ca-certificates && curl -fsSL https://raw.githubusercontent.com/XCodeSky/northwest-desertification/main/deploy/ubuntu24/deploy-from-github.sh | sudo bash -s -- --release v1.0.0
+sudo apt-get update && sudo apt-get install -y curl ca-certificates && curl --http1.1 --retry 5 --retry-all-errors -fsSL https://raw.githubusercontent.com/XCodeSky/northwest-desertification/main/deploy/ubuntu24/deploy-from-github.sh | sudo bash -s -- --release v1.0.0
 ```
 
 部署完成后访问 `http://服务器公网IP/`。云服务商安全组和主机防火墙需要允许入站 TCP 80。
@@ -31,7 +31,7 @@ sudo apt-get update && sudo apt-get install -y curl ca-certificates && curl -fsS
 如需先审阅脚本再运行：
 
 ```bash
-curl -fL https://raw.githubusercontent.com/XCodeSky/northwest-desertification/main/deploy/ubuntu24/deploy-from-github.sh -o /tmp/deploy-from-github.sh
+curl --http1.1 --retry 5 --retry-all-errors -fL https://raw.githubusercontent.com/XCodeSky/northwest-desertification/main/deploy/ubuntu24/deploy-from-github.sh -o /tmp/deploy-from-github.sh
 less /tmp/deploy-from-github.sh
 sudo bash /tmp/deploy-from-github.sh --release v1.0.0
 ```
@@ -51,7 +51,7 @@ sudo bash deploy/ubuntu24/deploy.sh
 先把域名 A/AAAA 记录指向服务器，再执行：
 
 ```bash
-curl -fL https://raw.githubusercontent.com/XCodeSky/northwest-desertification/main/deploy/ubuntu24/deploy-from-github.sh -o /tmp/deploy-from-github.sh
+curl --http1.1 --retry 5 --retry-all-errors -fL https://raw.githubusercontent.com/XCodeSky/northwest-desertification/main/deploy/ubuntu24/deploy-from-github.sh -o /tmp/deploy-from-github.sh
 sudo bash /tmp/deploy-from-github.sh --release v1.0.0 \
   --domain desert.example.org \
   --https \
