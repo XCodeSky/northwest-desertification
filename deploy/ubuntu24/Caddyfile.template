@@ -14,10 +14,7 @@ __DOMAIN__ {
         -Server
     }
 
-    handle /healthz {
-        header Content-Type "text/plain; charset=utf-8"
-        respond "ok" 200
-    }
+    respond /healthz "ok" 200
 
     @html path / /index.html *.html
     header @html Cache-Control "no-cache"
@@ -28,8 +25,5 @@ __DOMAIN__ {
     @long_cache path *.png *.jpg *.jpeg *.webp *.svg *.mp4 *.tif *.tiff *.zip *.xlsx *.md
     header @long_cache Cache-Control "public, max-age=604800"
 
-    handle {
-        try_files {path} {path}/ =404
-        file_server
-    }
+    file_server
 }
